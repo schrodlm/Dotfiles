@@ -20,6 +20,12 @@ return {
         dependencies = {
             "nvim-tree/nvim-web-devicons"
         },
-    }
+    },
+	-- these plugins are then set in after/plug directory which neovim will source after all plugins have been loaded, 
+	-- that means settings in after/plugins directory cannot be overriden 
+	"williamboman/mason.nvim",
+	"williamboman/mason-lspconfig.nvim",
+	"neovim/nvim-lspconfig",
+	'folke/neodev.nvim',
 }
 
