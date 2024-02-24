@@ -1,14 +1,25 @@
 return {
-	"githubname/githubrepo",
+	--comments 
 	{
-		"githubname/githubrepo"
-
-		-- only for cpp files
-		ft = "cpp"
-
-		-- what to run after plugin is loaded
+		"numToStr/Comment.nvim",
 		config = function()
-			require("plugin").setup()
-		end,
+			require("Comment").setup()
+		end
 	},
+	-- color scheme
+	{
+		"rebelot/kanagawa.nvim",
+		priority = 1000, 
+		config = function()
+			vim.cmd("colorscheme kanagawa-wave")
+		end
+	},
+	-- lualine
+	{
+        'nvim-lualine/lualine.nvim',
+        dependencies = {
+            "nvim-tree/nvim-web-devicons"
+        },
+    }
 }
+
