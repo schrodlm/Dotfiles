@@ -25,14 +25,14 @@ end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-require('lspconfig').lua_ls.setup{
-	on_attach = on_attach,
-	capabilities = capabilities,
-	Lua =  {
-		workspace = { checkThirdParty = false},
-		telemetry = {enable = false},
-	},
-}
+-- require('lspconfig').lua_ls.setup{
+-- 	on_attach = on_attach,
+-- 	capabilities = capabilities,
+-- 	Lua =  {
+-- 		workspace = { checkThirdParty = false},
+-- 		telemetry = {enable = false},
+-- 	},
+-- }
 
 -- adding lsp server package manager (mason)
 require("mason").setup()
