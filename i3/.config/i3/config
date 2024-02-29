@@ -203,14 +203,15 @@ bindsym $mod+r mode "resize"
 
 # Shutdown, Reboot, Lock Screen, and Logout 
 
-set $power_mode "power"
-bindsym $mod+Shift+p      mode $power_mode
-mode $power_mode {
-    bindsym p         exec systemctl poweroff
-    bindsym r         exec systemctl reboot 
-    bindsym l         exec --no-startup-id i3-msg exit, mode "default"
-    bindsym h         exec sudo systemctl hibernate 
-    bindsym s         exec sudo systemctl suspend
+set $system_mode "System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (p) shutdown"
+bindsym $mod+Shift+p      mode $system_mode
+mode $system_mode {
+    bindsym p         exec --no-startup-id ~/Scripts/i3exit shutdown, mode "default"
+    bindsym r         exec --no-startup-id ~/Scripts/i3exit reboot, mode "default" 
+    bindsym l         exec --no-startup-id ~/Scripts/i3exit lock exit, mode "default"
+    bindsym e 		  exec --no-startup-id ~/Scripts/i3exit logout, mode "default"
+    bindsym h         exec --no-startup-id ~/Scripts/i3exit hibernate, mode "default"
+    bindsym s         exec --no-startup-id ~/Scripts/i3exit suspend, mode "default"
     bindsym Return    mode "default"
     bindsym Escape    mode "default"
 }
@@ -236,7 +237,7 @@ exec_always spotify
 exec_always feh --bg-scale /home/schrodlm/Pictures/linux-wallpaper.jpg
 exec_always discord
 #this is an app for changing light color throughout the day (based on your location)
-exec --no-startup-id redshift 
+# exec --no-startup-id redshift 
 
 #Enable printscreen
 bindsym --release Print exec flameshot gui --clipboard -s
