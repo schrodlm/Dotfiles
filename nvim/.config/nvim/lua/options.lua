@@ -4,7 +4,11 @@ vim.g.maplocalleader = ' '
 
 vim.o.clipboard = 'unnamedplus'
 
+-- turn on hybrid line numbering
 vim.o.relativenumber = true
+vim.o.number = true
+
+--vim.api.nvim_set_hl(0, 'LineNrBelow', { fg='grey' })
 
 vim.o.signcolumn = 'yes'
 

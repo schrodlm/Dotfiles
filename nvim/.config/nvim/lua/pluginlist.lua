@@ -10,7 +10,28 @@ return{
     "rebelot/kanagawa.nvim",
     priority = 1000,
     config = function()
-        vim.cmd("colorscheme kanagawa-wave")
+		require('kanagawa').setup({
+    		colors = {
+        		theme = {
+            		all = {
+                		ui = {
+                    		bg_gutter = "none"
+                		}
+            		}
+        		}
+    },
+	-- adding color to current line number
+	overrides = function(colors)
+     	   return {
+						LineNr = {fg= colors.palette.lotusOrange, bold = true},
+						LineNrAbove = {fg = colors.palette.dragonGray},
+						LineNrBelow = {fg = colors.palette.dragonGray},
+        	}
+    end,
+
+})
+
+    vim.cmd("colorscheme kanagawa-wave")
     end
 }, -- these plugins are then set in after/plug directory which neovim will source after all plugins have been loaded, 
 -- that means settings in after/plugins directory cannot be overriden 
