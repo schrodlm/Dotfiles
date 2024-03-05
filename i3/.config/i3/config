@@ -241,6 +241,7 @@ exec_always discord
 
 #Enable printscreen
 bindsym --release Print exec flameshot gui --clipboard -s
+bindsym --release  Shift+Ctrl+s exec flameshot gui --clipboard -s
 
 #Bind app to workspace
 assign [class="discord"] $ws8
