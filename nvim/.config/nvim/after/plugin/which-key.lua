@@ -22,7 +22,8 @@ wk.register({
 		d = { "<cmd>Telescope git_files<cr>", 	"find git files"},	
 		m = { "<cmd>Telescope keymaps<cr>", 	"list all keymaps"},	
     },
-	r = {"<cmd>vim.lsp.rename<cr>","rename"},
+	r = {"<cmd>vim.lsp.rename<cr>",				"rename"},
+	g = {"<cmd>Neogit<cr>",						"neogit"},
   },
   	["g"] =
 	{
