@@ -21,6 +21,15 @@ vim.o.termguicolors = true
 
 vim.o.mouse = 'a'
 
+---            Mappings
+---------------------------------------------
+
+vim.api.nvim_set_keymap('v', '<leader>(', 'c()<Esc>P', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<leader>[', 'c[]<Esc>P', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<leader>{', 'c{}<Esc>P', { noremap = true, silent = true })
+
+
+
 -- turn off diagnostics by default
 local config = vim.diagnostic.config
 config{
