@@ -1,4 +1,4 @@
-local on_attach = function(_, bufnr)
+ local on_attach = function(_, bufnr)
 
   local bufmap = function(keys, func)
     vim.keymap.set('n', keys, func, { buffer = bufnr })
@@ -18,23 +18,13 @@ local on_attach = function(_, bufnr)
 
   bufmap('K', vim.lsp.buf.hover,  {buffer = bufnr})
 
-  local builtin = require('telescope.builtin')
-  vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-  vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-  vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-  vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-  vim.keymap.set('n', '<leader>fj', builtin.jumplist, {})
-  vim.keymap.set('n', '<leader>ft', builtin.treesitter, {})
-
-
 
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-    vim.lsp.buf.format()
+	vim.lsp.buf.format()
   end, {})
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-
 -- require('lspconfig').lua_ls.setup{
 -- 	on_attach = on_attach,
 -- 	capabilities = capabilities,

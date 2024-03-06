@@ -10,12 +10,18 @@ local wk = require("which-key")
 
 wk.register({
   ["<leader>"] = {
-    f = {
-      name = "+file",
-      f = { "<cmd>Telescope find_files<cr>", "Find File" },
-      r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
-      n = { "<cmd>enew<cr>", "New File" },
-    	},
+	f = {
+		name = "+file",
+		f = { "<cmd>Telescope find_files<cr>", 	"find file" },
+		g = { "<cmd>Telescope live_grep<cr>", 	"live grep"},
+		b = { "<cmd>Telescope buffers<cr>", 	"buffers"},
+		h = { "<cmd>Telescope help_tags<cr>", 	"help tags"},
+		o = { "cmd> Telescope oldfiles<cr>", 	"list old files"},
+		j = { "<cmd>Telescope jumplist<cr>", 	"jumplist" },
+		t = { "<cmd>Telescope treesiter<cr>", 	"treesitter" },	
+		d = { "<cmd>Telescope git_files<cr>", 	"find git files"},	
+		m = { "<cmd>Telescope keymaps<cr>", 	"list all keymaps"},	
+    },
 	r = {"<cmd>vim.lsp.rename<cr>","rename"},
   },
   	["g"] =
@@ -33,7 +39,8 @@ wk.register({
 	["<leader>"] = {
 		["("] = {"surround with parentheses"},
 		["{"] = {"surround with curly brackets"},
-		["["] = {"surround with brackets"}
+		["["] = {"surround with brackets"},
+		fg    = {"grep selected word"},
 	}
 }, { mode = "v"})
 
