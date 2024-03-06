@@ -14,16 +14,19 @@ wk.register({
 		name = "+file",
 		f = { "<cmd>Telescope find_files<cr>", 	"find file" },
 		g = { "<cmd>Telescope live_grep<cr>", 	"live grep"},
-		b = { "<cmd>Telescope buffers<cr>", 	"buffers"},
+		b = { ":Telescope file_browser path=%:p:h select_buffer=true<cr>", "file browser"},	
+		u = { "<cmd>Telescope buffers<cr>", 	"buffers"},
 		h = { "<cmd>Telescope help_tags<cr>", 	"help tags"},
 		o = { "cmd> Telescope oldfiles<cr>", 	"list old files"},
 		j = { "<cmd>Telescope jumplist<cr>", 	"jumplist" },
 		t = { "<cmd>Telescope treesiter<cr>", 	"treesitter" },	
 		d = { "<cmd>Telescope git_files<cr>", 	"find git files"},	
-		m = { "<cmd>Telescope keymaps<cr>", 	"list all keymaps"},	
+		m = { "<cmd>Telescope keymaps<cr>", 	"list all keymaps"},
+
     },
 	r = {"<cmd>vim.lsp.rename<cr>",				"rename"},
 	g = {"<cmd>Neogit<cr>",						"neogit"},
+	
   },
   	["g"] =
 	{

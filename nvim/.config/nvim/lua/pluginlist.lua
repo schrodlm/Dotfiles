@@ -79,6 +79,11 @@ return{
     -- or leave it empty to use the default settings
     -- refer to the configuration section below
   }
+},
+-- file browser
+{
+    "nvim-telescope/telescope-file-browser.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
 }
 }
 
