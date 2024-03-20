@@ -84,6 +84,20 @@ return{
 {
     "nvim-telescope/telescope-file-browser.nvim",
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+},
+{
+		'hrsh7th/nvim-cmp',
+		dependencies = {
+			'hrsh7th/cmp-buffer', 		-- nvim-cmp source for buffer words
+			'hrsh7th/cmp-path',
+			'hrsh7th/cmp-nvim-lsp',
+
+			'L3MON4D3/LuaSnip',
+			'saadparwaiz1/cmp_luasnip',
+			'rafamadriz/friendly-snippets',
+			'onsails/lspkind.nvim',
+		},
 }
 }
+
 

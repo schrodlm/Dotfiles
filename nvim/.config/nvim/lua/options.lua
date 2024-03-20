@@ -21,6 +21,7 @@ vim.o.termguicolors = true
 
 vim.o.mouse = 'a'
 
+vim.opt.pumheight = 5 -- limit completion items
 ---            Mappings
 ---------------------------------------------
 
