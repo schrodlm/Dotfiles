@@ -112,6 +112,9 @@ return{
       ]]
     end,
 },
+{
+	'cohama/lexima.vim'
+}
 }
 
 
