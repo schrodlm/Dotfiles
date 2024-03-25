@@ -32,12 +32,12 @@ cmp.setup {
     mapping = cmp.mapping.preset.insert {
         ['<C-d>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
-		['<C-e>'] = cmp.mapping.close(),
+				['<C-e>'] = cmp.mapping.close(),
         ['<c-y>'] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
         },
-		['<c-space>'] = cmp.mapping.complete(),
+				['<c-space>'] = cmp.mapping.complete(),
 
 	-- Moving items with TAB
     --     ['<Tab>'] = cmp.mapping(function(fallback)
