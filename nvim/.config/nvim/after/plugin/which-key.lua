@@ -22,7 +22,6 @@ wk.register({
 		t = { "<cmd>Telescope treesiter<cr>", 	"treesitter" },	
 		d = { "<cmd>Telescope git_files<cr>", 	"find git files"},	
 		m = { "<cmd>Telescope keymaps<cr>", 	"list all keymaps"},
-
     },
 	r = {"<cmd>vim.lsp.rename<cr>",				"rename"},
 	g = {"<cmd>Neogit<cr>",						"neogit"},
@@ -44,7 +43,7 @@ wk.register({
 		["("] = {"surround with parentheses"},
 		["{"] = {"surround with curly brackets"},
 		["["] = {"surround with brackets"},
-		fg    = {"grep selected word"},
+		fw = {"live grep selcted text"},
 	}
 }, { mode = "v"})
 

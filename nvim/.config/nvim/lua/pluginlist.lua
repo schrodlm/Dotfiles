@@ -97,7 +97,21 @@ return{
 			'rafamadriz/friendly-snippets',
 			'onsails/lspkind.nvim',
 		},
-}
+},
+-- quick scope
+{
+		'unblevable/quick-scope',
+    init = function()
+      -- QuickScope
+      vim.cmd [[
+      " Trigger a highlight in the appropriate direction when pressing these keys:
+      let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+			" Your .vimrc
+			highlight QuickScopePrimary guifg='#ffbf00' gui=underline 
+			highlight QuickScopeSecondary guifg='#bf94e4' gui=underline 
+      ]]
+    end,
+},
 }
 
 
