@@ -59,13 +59,14 @@ cmp.setup {
     --         end
     --     end, { 'i', 's' }),
     },
+	-- how long do I have type to start showing keywords
 	sources = {
         { name = 'nvim_lsp', keyword_length = 2},
 		{ name = 'path', keyword_length = 2},
         { name = 'luasnip', keyword_length = 2},
-		{ name = 'buffer', keyword_length = 3 },
+		{ name = 'buffer', keyword_length = 2},
     },
-
+	-- shows source of where the completion originated from 
 	formatting = {
 		format = lspkind.cmp_format{
 			with_text = true,
@@ -77,7 +78,7 @@ cmp.setup {
 			},
 		},
 	},
-
+	-- virtual text [testing]
 	experimental = {
 		ghost_text = true,
 	},
