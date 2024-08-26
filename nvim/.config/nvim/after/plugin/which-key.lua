@@ -24,8 +24,8 @@ wk.register({
 		m = { "<cmd>Telescope keymaps<cr>", 	"list all keymaps"},
     },
 	r = {"<cmd>vim.lsp.rename<cr>",				"rename"},
-	g = {"<cmd>Neogit<cr>",						"neogit"},
-	
+	g = {"<cmd>Neogit<cr>",			                "neogit"},
+	t = {"<cmd>belowright split +term | startinsert<cr>",   "terminal"}
   },
   	["g"] =
 	{

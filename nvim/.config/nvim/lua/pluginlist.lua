@@ -114,7 +114,11 @@ return{
 },
 {
 	'cohama/lexima.vim'
-}
+},
+	{
+		'nvim-treesitter/playground'
+	}
+
 }
 
 
