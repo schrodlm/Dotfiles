@@ -134,7 +134,7 @@ set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
-set $ws7 "7"
+set $ws7 "7 "
 set $ws8 "8 "
 set $ws9 "9 "
 set $ws10 "10"
@@ -209,11 +209,20 @@ mode $system_mode {
     bindsym p         exec --no-startup-id ~/Scripts/i3exit shutdown, mode "default"
     bindsym r         exec --no-startup-id ~/Scripts/i3exit reboot, mode "default" 
     bindsym l         exec --no-startup-id ~/Scripts/i3exit lock exit, mode "default"
-    bindsym e 		  exec --no-startup-id ~/Scripts/i3exit logout, mode "default"
+    bindsym e 	      exec --no-startup-id ~/Scripts/i3exit logout, mode "default"
     bindsym h         exec --no-startup-id ~/Scripts/i3exit hibernate, mode "default"
     bindsym s         exec --no-startup-id ~/Scripts/i3exit suspend, mode "default"
     bindsym Return    mode "default"
     bindsym Escape    mode "default"
+}
+
+# Important apps
+set $apps_mode "File manager (f)"
+bindsym $mod+Shift+a mode $apps_mode
+mode $apps_mode {
+  bindsym f             exec i3-sensible-terminal -e ranger
+  bindsym Return        mode "default"
+  bindsym Escape        mode "default"
 }
 
 #Lock mode
@@ -234,6 +243,7 @@ client.urgent #2f3e5d #2f3e5d #ffffff #900000   #900000
 
 #Always turn on on startup
 exec_always spotify
+exec_always thunderbird
 exec_always feh --bg-scale /home/schrodlm/Pictures/linux-wallpaper.jpg
 exec_always discord
 #this is an app for changing light color throughout the day (based on your location)
@@ -244,6 +254,7 @@ bindsym --release Print exec flameshot gui --clipboard -s
 bindsym --release  Shift+Ctrl+s exec flameshot gui --clipboard -s
 
 #Bind app to workspace
+assign [class="thunderbird"] $ws7
 assign [class="discord"] $ws8
 assign [class="Spotify"] $ws9
 
