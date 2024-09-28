@@ -217,10 +217,12 @@ mode $system_mode {
 }
 
 # Important apps
-set $apps_mode "File manager (f)"
+set $apps_mode "File manager (f) Redshift (l)"
 bindsym $mod+Shift+a mode $apps_mode
 mode $apps_mode {
-  bindsym f             exec i3-sensible-terminal -e ranger
+  bindsym v             exec i3-sensible-terminal -e virt-manager, mode "default"
+  bindsym f             exec i3-sensible-terminal -e ranger, mode "default"
+  bindsym l             exec i3-sensible-terminal -e redshift, mode "default"
   bindsym Return        mode "default"
   bindsym Escape        mode "default"
 }
