@@ -30,6 +30,7 @@ vim.opt.pumheight = 5 -- limit completion items
 vim.api.nvim_set_keymap('v', '<leader>(', 'c()<Esc>P', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<leader>[', 'c[]<Esc>P', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<leader>{', 'c{}<Esc>P', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<leader>\"', 'c\"\"<Esc>P', { noremap = true, silent = true })
 
 
 

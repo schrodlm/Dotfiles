@@ -43,6 +43,7 @@ wk.register({
 		["("] = {"surround with parentheses"},
 		["{"] = {"surround with curly brackets"},
 		["["] = {"surround with brackets"},
+		["\""] = {"surround with aphostrophes"},
 		fw = {"live grep selcted text"},
 	}
 }, { mode = "v"})
