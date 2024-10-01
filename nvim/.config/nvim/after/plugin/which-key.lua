@@ -10,7 +10,7 @@ local wk = require("which-key")
 
 wk.add({
   { "<leader>f", group = "file" },
-  { "<leader>fb", ":Telescope file_browser path=%:p:help |select_buffer=true<cr>|", desc = "file browser" },
+  { "<leader>fb", ":Telescope file_browser path=%:p:help select_buffer=true<cr>", desc = "file browser" },
   { "<leader>fd", "<cmd>Telescope git_files<cr>", desc = "find git files" },
   { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "find file" },
   { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "live grep" },
