@@ -133,7 +133,8 @@ source /usr/share/doc/fzf/examples/completion.zsh
 
 # open nvim with looking for a file
 alias fzn="fd -H | fzf --height 40% --layout reverse --border --bind 'enter:become(nvim {})'"
-alias fzf="fd -H | fzf --height 40% --layout reverse --border"
+alias fzf="fzf --height 40% --layout reverse --border"
+alias fdf="fd -H | fzf --height 40% --layout reverse --border"
 alias fzfh="find ~ | fzf"
 alias bat="batcat"
 
