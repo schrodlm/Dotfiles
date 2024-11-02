@@ -29,15 +29,35 @@ cmp.setup {
         end,
     },
 
-    mapping = cmp.mapping.preset.insert {
+    mapping = { 
+        ["<C-Up>"] = cmp.mapping.select_prev_item({behavior = cmp.SelectBehavior, count = 1}),
+        ["<C-Down>"] = cmp.mapping.select_next_item({behavior = cmp.SelectBehavior, count = 1}),
         ['<C-d>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
-				['<C-e>'] = cmp.mapping.close(),
         ['<c-y>'] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
         },
-				['<c-space>'] = cmp.mapping.complete(),
+	['<c-space>'] = cmp.mapping.complete(),
+
+        -- Custom Down and Up mappings to close completion menu and move one line in the specified direction
+        ["<Down>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.close()
+                vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Down>", true, true, true), 'n', true)
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
+
+        ["<Up>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.close()
+                vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Up>", true, true, true), 'n', true)
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
 
 	-- Moving items with TAB
     --     ['<Tab>'] = cmp.mapping(function(fallback)
