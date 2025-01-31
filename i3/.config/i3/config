@@ -11,9 +11,36 @@
 
 set $mod Mod4
 
+# User variables
+
+# 1. Managers
+set $FILE_MANAGER nautilus
+set $BRIGHTNESS_MANAGER i3-sensible-terminal -e redshift
+set $VIRT_MANAGER i3-sensible-terminal -e virt-manager
+set $AUDIO_MANAGER pavucontrol
+set $BLUETOOTH_MANAGER blueman-manager
+
+# 2. Fonts
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font pango:monospace 10
+
+#3. Directories
+set $SCRIPT_DIR /home/schrodlm/Scripts
+set $WALLPAPER /home/schrodlm/Pictures/linux-wallpaper.jpg
+
+# Dependencies
+  # 1. USED BY I3 
+    # i3-blocks (for navigation bar)
+    # blueman-applet (for bluetooth in i3bar)
+    # nm-applet (for networks in i3bar)
+  # 2. USER USED
+    # feh (used for background)
+    # flameshot (screenshots)
+    # playerctl (for audio managing - it is part of pulseaudio package)
+    # thunderbird (specifically used by window 7)
+    # discord (is specifically used by window 8)
+    # spotify (specifically used by window 9)
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -50,8 +77,8 @@ bindsym XF86AudioPrev exec playerctl previous
 
 # Sreen brightness controls
 
-bindsym XF86MonBrightnessUp exec /home/schrodlm/Scripts/backlight.sh +  # increase screen brightness
-bindsym XF86MonBrightnessDown exec /home/schrodlm/Scripts/backlight.sh - # decrease screen brightness
+bindsym XF86MonBrightnessUp exec $SCRIPT_DIR/backlight.sh +  # increase screen brightness
+bindsym XF86MonBrightnessDown exec $SCRIPT_DIR/backlight.sh - # decrease screen brightness
 
 bindsym $mod+x fullscreen toggle
 
@@ -171,7 +198,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 #Touchpad setting with synclient (synaptics)
-exec --no-startup-id /home/schrodlm/Scripts/synclient-touchpad.sh
+exec --no-startup-id $SCRIPT_DIR/synclient-touchpad.sh
 
 
 # resize window (you can also use the mouse for that)
@@ -217,18 +244,20 @@ mode $system_mode {
 }
 
 # Important apps
-set $apps_mode "File manager (f) Redshift (l) VirtualManager(v)"
+set $apps_mode "(f) File manager, (r) Redshift, (v) VirtualManager, (p) audio, (b) bluetooth"
 bindsym $mod+Shift+a mode $apps_mode
 mode $apps_mode {
-  bindsym v             exec i3-sensible-terminal -e virt-manager, mode "default"
-  bindsym f             exec i3-sensible-terminal -e ranger, mode "default"
-  bindsym l             exec i3-sensible-terminal -e redshift, mode "default"
+  bindsym f             exec $FILE_MANAGER, mode "default"
+  bindsym r             exec $BRIGHTNESS_MANAGER, mode "default"
+  bindsym v             exec $VIRT_MANAGER, mode "default"
+  bindsym p             exec $AUDIO_MANAGER, mode "default"
+  bindsym b             exec $BLUETOOTH_MANAGER, mode "default"
   bindsym Return        mode "default"
   bindsym Escape        mode "default"
 }
 
 #Lock mode
-bindsym $mod+b exec i3lock -i /home/schrodlm/Pictures/linux-wallpaper.png 
+bindsym $mod+b exec i3lock -i $WALLPAPER 
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -246,7 +275,7 @@ client.urgent #2f3e5d #2f3e5d #ffffff #900000   #900000
 #Always turn on on startup
 exec_always spotify
 exec_always thunderbird
-exec_always feh --bg-scale /home/schrodlm/Pictures/linux-wallpaper.jpg
+exec_always feh --bg-scale $WALLPAPER
 exec_always discord
 #this is an app for changing light color throughout the day (based on your location)
 # exec --no-startup-id redshift 
