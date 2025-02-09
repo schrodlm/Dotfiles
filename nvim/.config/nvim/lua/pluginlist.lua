@@ -1,4 +1,8 @@
 return{
+-- smt-libv2 syntax
+{
+  "bohlender/vim-smt2"
+},
 -- comments 
 {
     "numToStr/Comment.nvim",
