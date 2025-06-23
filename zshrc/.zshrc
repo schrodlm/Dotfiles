@@ -145,6 +145,9 @@ alias slicer="flatpak run com.prusa3d.PrusaSlicer"
 # tmux aliases
 alias tma="tmux attach-session -t"
 
+#cppreference alias
+alias cppreference="firefox /usr/share/cppreference/doc/html/en/index.html"
+
 # Useful environment variables
 export ZSHRC=~/.zshrc
 export NVIM_CFG=~/.config/nvim/
