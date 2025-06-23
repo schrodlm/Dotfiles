@@ -139,6 +139,7 @@ alias fzf="fzf --height 40% --layout reverse --border"
 alias fdf="fd -H | fzf --height 40% --layout reverse --border"
 alias fzfh="find ~ | fzf"
 alias bat="batcat"
+alias slicer="flatpak run com.prusa3d.PrusaSlicer"
 
 
 # tmux aliases
