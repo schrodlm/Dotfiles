@@ -153,3 +153,7 @@ export ZSHRC=~/.zshrc
 export NVIM_CFG=~/.config/nvim/
 export TMUX_CFG=~/.tmux.conf
 export I3_CFG=~/.config/i3/config
+
+# Install Ruby Gems to ~/gems
+export GEM_HOME="$HOME/gems"
+export PATH="$HOME/gems/bin:$PATH"
