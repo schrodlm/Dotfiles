@@ -19,7 +19,6 @@ require('telescope').setup({
       '--column',
       '--smart-case',
       '--hidden',
-      '--no-ignore',  -- include hidden files and those in .gitignore
     },
   },
 })
