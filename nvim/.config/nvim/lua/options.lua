@@ -32,6 +32,19 @@ vim.api.nvim_set_keymap('v', '<leader>[', 'c[]<Esc>P', { noremap = true, silent 
 vim.api.nvim_set_keymap('v', '<leader>{', 'c{}<Esc>P', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<leader>\"', 'c\"\"<Esc>P', { noremap = true, silent = true })
 
+---- Start and end of the line (non-whitespace) ----
+-- Normal mode mappings
+vim.keymap.set('n', '<C-s>', '^', { desc = "Move to start of non-whitespace" })
+vim.keymap.set('n', '<C-l>', '$', { desc = "Move to end of line" })
+
+-- Optional: Visual mode mappings (useful for selecting)
+vim.keymap.set('v', '<C-s>', '^', { desc = "Move to start of non-whitespace (Visual)" })
+vim.keymap.set('v', '<C-l>', '$', { desc = "Move to end of line (Visual)" })
+
+-- Optional: Operator-pending mode mappings (e.g., for 'd<C-k>')
+-- This allows you to combine it with operators like d (delete), y (yank), c (change)
+vim.keymap.set('o', '<C-s>', '^', { desc = "Move to start of non-whitespace (Operator)" })
+vim.keymap.set('o', '<C-l>', '$', { desc = "Move to end of line (Operator)" })
 
 
 -- turn off diagnostics by default
