@@ -114,8 +114,12 @@ fi
 export PATH="/home/schrodlm/Scripts:$PATH"
 #Exposing my nvim build form source
 export PATH="$PATH:/opt/nvim-linux64/bin"
-#Exposing localy built binaries
+#Exposing golang 
+export PATH="$PATH:/opt/go/bin"
+#Exposing globally built binaries
 export PATH="$PATH:/opt/bin"
+#Exposing locally built binaries
+export PATH="$PATH:$(go env GOPATH)/bin"
 
 export PATH="$PATH:$HOME/.local/bin"
 
