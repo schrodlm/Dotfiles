@@ -111,7 +111,9 @@ fi
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 #Add my scripts folder to path
-export PATH="/home/schrodlm/Scripts:$PATH"
+export PATH="$PATH:$HOME/Scripts"
+#Add public scripts folder from Dotfiles
+export PATH="$PATH:$HOME/Scripts/public"
 #Exposing my nvim build form source
 export PATH="$PATH:/opt/nvim-linux64/bin"
 #Exposing golang 

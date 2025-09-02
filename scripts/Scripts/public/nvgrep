@@ -1,0 +1,14 @@
+#!/bin/zsh
+# Function for searching keywords in projects
+
+function nvgrep {
+  local result
+  result=$(grep -rn . -e "$1" | fzf)
+  if [[ -n $result ]]; then
+      local file=$(echo $result | cut -d: -f1)
+      local line=$(echo $result | cut -d: -f2)
+      nvim "$file" +"$line"
+  fi
+}
+
+nvgrep "$1"
