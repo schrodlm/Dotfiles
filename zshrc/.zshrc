@@ -140,11 +140,31 @@ source /usr/share/doc/fzf/examples/key-bindings.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
 
 # open nvim with looking for a file
-alias fzn="fd -H | fzf --height 40% --layout reverse --border --bind 'enter:become(nvim {})'"
-alias fzf="fzf --height 40% --layout reverse --border"
-alias fdf="fd -H | fzf --height 40% --layout reverse --border"
-alias fzfh="find ~ | fzf"
 alias bat="batcat"
+
+alias fzf="fzf --height 40% --layout reverse --border"
+
+# FZF file search using `rg`(ripgrep) cmd
+fn() {
+  local files file
+  files=$(rg --files ~) &&
+  file=$(echo "$files" | fzf +m | sed 's/.*/"&"/')
+  [[ "$file" = "" ]] && return || echo "$file" | xargs nvim
+}
+
+fa() {
+  local selected_dir
+  # Use fd to find all directories and pipe the output to fzf
+  selected_dir=$(fd --type d . ~ | fzf)
+
+  # Change into the selected directory if a choice was made
+  if [ -n "$selected_dir" ]; then
+    cd "$selected_dir" || return 1
+  fi
+}
+alias fzp="fzf --preview 'batcat --style=numbers --color=always --line-range :500 {}'"
+
+
 alias slicer="flatpak run com.prusa3d.PrusaSlicer"
 alias dotfiles="code ~/Dotfiles"
 alias python="python3"
