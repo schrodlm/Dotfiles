@@ -4,7 +4,9 @@ sudo apt update
 sudo apt install -y git tmux zsh i3wm i3blocks
 
 #TODO:
-#install neovim (build from source)
+#1. install neovim (build from source)
+#2. install vscode
+#3. install slicer (flathub)
 
 #Configure terminal
 #1. Install a package manger for ZSH (oh-my-zsh)
