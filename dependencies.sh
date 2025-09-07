@@ -1,13 +1,40 @@
-# Tools you will need (apt packackage manager)
+#!/bin/bash
 
-sudo apt update
-sudo apt install -y git tmux zsh i3wm i3blocks
+PACKAGES=(
+  "fzf"
+  "ripgrep"
+  "tmux"
+  "zsh"
+  "curl"
+)
 
-#TODO:
-#1. install neovim (build from source)
-#2. install vscode
-#3. install slicer (flathub)
-#4. install fzf
+echo "Starting package installation..."
+
+# Check for apt (Debian/Ubuntu)
+if command -v apt &> /dev/null; then
+  echo "Detected Debian/Ubuntu based system. Using apt."
+  sudo apt update
+  sudo apt install -y "${PACKAGES[@]}"
+
+# Check for dnf (Fedora/CentOS)
+elif command -v dnf &> /dev/null; then
+  echo "Detected Fedora/CentOS based system. Using dnf."
+  sudo dnf install -y "${PACKAGES[@]}"
+
+# Check for pacman (Arch Linux)
+elif command -v pacman &> /dev/null; then
+  echo "Detected Arch based system. Using pacman."
+  # The --noconfirm flag skips confirmation prompts
+  sudo pacman -Syu --noconfirm "${PACKAGES[@]}"
+
+else
+  echo "Could not detect a supported package manager (apt, dnf, pacman). Please install dependencies manually."
+  exit 1
+fi
+
+echo "All packages installed successfully! ✨"
+
+# Build neovim from source
 
 #Configure terminal
 #1. Install a package manger for ZSH (oh-my-zsh)
