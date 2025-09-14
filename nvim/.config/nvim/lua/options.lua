@@ -46,7 +46,8 @@ vim.keymap.set('v', '<C-l>', '$', { desc = "Move to end of line (Visual)" })
 vim.keymap.set('o', '<C-s>', '^', { desc = "Move to start of non-whitespace (Operator)" })
 vim.keymap.set('o', '<C-l>', '$', { desc = "Move to end of line (Operator)" })
 
-
+-- ctrl+h == ctrl+backspace in older terminals for historic reasons
+vim.keymap.set('i', '<C-h>', '<C-w>', { desc = "Remove a word" })
 -- turn off diagnostics by default
 local config = vim.diagnostic.config
 config{
