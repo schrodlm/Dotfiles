@@ -9,12 +9,16 @@ sudo apt install -y git tmux zsh i3wm i3blocks
 #3. install rofi
 #4. install slicer (flathub)
 #5. install fzf
+#6. install go
 
 #Set a default wallpaper 
 #1. download wallpaper from:
 #2. set it with feh
 
 #Download pango nerd font
+
+#Add vscode extensions and settings
+
 
 #Configure terminal
 #1. Install a package manger for ZSH (oh-my-zsh)
