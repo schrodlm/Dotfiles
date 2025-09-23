@@ -1,0 +1,127 @@
+#!/bin/bash
+
+# Git search script for multiple keywords
+# Usage: git search [--or|--and] [--msg-only|--code-only] [--patch] keyword1 keyword2 ...
+
+mode="and"
+search_type="msg"  # Default to message search for reliability
+show_patch=false
+words=""
+word_count=0
+
+# Parse arguments
+while [ $# -gt 0 ]; do
+    case "$1" in
+        --or|-o)
+            mode="or"
+            shift
+            ;;
+        --and|-a)
+            mode="and"
+            shift
+            ;;
+        --msg-only|-m)
+            search_type="msg"
+            shift
+            ;;
+        --code-only|-c)
+            search_type="code"
+            shift
+            ;;
+        --both|-b)
+            search_type="both"
+            shift
+            ;;
+        --patch|-p)
+            show_patch=true
+            shift
+            ;;
+        --help|-h)
+            echo "Usage: git search [OPTIONS] keyword1 keyword2 ..."
+            echo "Options:"
+            echo "  --and, -a      AND search (default)"
+            echo "  --or, -o       OR search"
+            echo "  --msg-only, -m Search only commit messages (default)"
+            echo "  --code-only, -c Search only code changes"
+            echo "  --both, -b     Search messages and code"
+            echo "  --patch, -p    Show patch diff"
+            echo "  --help, -h     Show this help"
+            echo ""
+            echo "Examples:"
+            echo "  git search test chamber           # AND search in messages"
+            echo "  git search --or bug fix           # OR search"
+            echo "  git search --code-only temp       # Search only code changes"
+            echo "  git search --patch --and fix bug  # Show patches for AND search"
+            exit 0
+            ;;
+        *)
+            if [ -n "$words" ]; then
+                words="$words $1"
+            else
+                words="$1"
+            fi
+            word_count=$((word_count + 1))
+            shift
+            ;;
+    esac
+done
+
+# Check if we have keywords
+if [ $word_count -eq 0 ]; then
+    echo "Error: No search keywords provided"
+    echo "Use 'git search --help' for usage information"
+    exit 1
+fi
+
+# Set output format
+if [ "$show_patch" = true ]; then
+    format_args="-p --color=always"
+else
+    format_args="--color=always"
+fi
+
+# Execute search based on mode
+if [ "$mode" = "and" ]; then
+    # AND search - build grep arguments
+    grep_args=""
+    pickaxe_args=""
+    
+    for word in $words; do
+        if [ "$search_type" = "msg" ] || [ "$search_type" = "both" ]; then
+            grep_args="$grep_args --grep=\"$word\""
+        fi
+        if [ "$search_type" = "code" ] || [ "$search_type" = "both" ]; then
+            pickaxe_args="$pickaxe_args -S \"$word\""
+        fi
+    done
+    
+    if [ -n "$grep_args" ] && [ -n "$pickaxe_args" ]; then
+        # Both message and code search
+        eval "git log $grep_args $pickaxe_args --all-match $format_args"
+    elif [ -n "$grep_args" ]; then
+        # Message search only
+        eval "git log $grep_args --all-match $format_args"
+    else
+        # Code search only
+        eval "git log $pickaxe_args $format_args"
+    fi
+else
+    # OR search - create regex pattern
+    pattern=""
+    first=true
+    for word in $words; do
+        if [ "$first" = true ]; then
+            pattern="$word"
+            first=false
+        else
+            pattern="$pattern|$word"
+        fi
+    done
+    
+    if [ "$search_type" = "msg" ] || [ "$search_type" = "both" ]; then
+        git log --grep="$pattern" --extended-regexp $format_args
+    else
+        echo "OR search with --code-only not supported (use AND search for code)"
+        exit 1
+    fi
+fi
