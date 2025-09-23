@@ -1,0 +1,54 @@
+{
+    "workbench.colorTheme": "Gruvbox Dark (Hard)",
+    "C_Cpp.default.compilerPath": "/usr/bin/g++",
+    "editor.fontSize": 16,
+    "cmake.pinnedCommands": [
+        "workbench.action.tasks.configureTaskRunner",
+        "workbench.action.tasks.runTask"
+    ],
+    "cmake.options.statusBarVisibility": "visible",
+    "C_Cpp.intelliSenseEngine": "disabled",
+    "clangd.path": "/home/schrodlm/.config/Code/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/19.1.2/clangd_19.1.2/bin/clangd",
+    "security.workspace.trust.untrustedFiles": "open",
+    "editor.fontFamily": "\"JetBrains Mono\", monospace",
+    "platformio-ide.autoOpenPlatformIOIniFile": false,
+    "diffEditor.hideUnchangedRegions.enabled": true,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "gitlens.gitCommands.skipConfirmations": [
+        "fetch:command",
+        "stash-push:command",
+        "switch:command"
+    ],
+    "gitlens.graph.layout": "editor",
+    "terminal.integrated.fontFamily": "monospace",
+    "editor.minimap.enabled": false,
+    "gitlens.views.commitDetails.files.layout": "list",
+    "githubPullRequests.pullBranch": "never",
+    "window.titleBarStyle": "native",
+    "plantuml.server": "https://www.plantuml.com/plantuml",
+    "plantuml.render": "PlantUMLServer",
+    "github.copilot.renameSuggestions.triggerAutomatically": false,
+    "editor.acceptSuggestionOnCommitCharacter": false,
+    "editor.snippetSuggestions": "none",
+    "geminicodeassist.inlineSuggestions.enableAuto": false,
+    "window.commandCenter": false,
+    "workbench.layoutControl.enabled": false,
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false,
+        "cpp": false
+    },
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#1A1A1A",
+        "statusBar.noFolderBackground": "#212121",
+        "statusBar.debuggingBackground": "#263238"
+    },
+    "gitlens.autolinks": [
+        {
+            "prefix": "BFW-",
+            "url": "https://dev.prusa3d.com/browse/BFW-<num>"
+        }
+    ]
+}
