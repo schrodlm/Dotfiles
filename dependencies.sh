@@ -10,6 +10,7 @@ sudo apt install -y git tmux zsh i3wm i3blocks
 #4. install slicer (flathub)
 #5. install fzf
 #6. install go
+#7. install fd
 
 #Set a default wallpaper 
 #1. download wallpaper from:
