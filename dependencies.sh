@@ -18,8 +18,11 @@ sudo apt install -y git tmux zsh i3wm i3blocks
 
 #Download pango nerd font
 
-#Add vscode extensions and settings
-
+#Locally build apps
+mkdir ~/Apps
+#Install rofi-code:
+git clone https://github.com/Coffelius/rofi-code.git ~Apps/rofi-code
+# then make install
 
 #Configure terminal
 #1. Install a package manger for ZSH (oh-my-zsh)
