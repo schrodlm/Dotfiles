@@ -24,7 +24,7 @@
     "editor.minimap.enabled": false,
     "gitlens.views.commitDetails.files.layout": "list",
     "githubPullRequests.pullBranch": "never",
-    "window.titleBarStyle": "native",
+    "window.titleBarStyle": "custom",
     "plantuml.server": "https://www.plantuml.com/plantuml",
     "plantuml.render": "PlantUMLServer",
     "github.copilot.renameSuggestions.triggerAutomatically": false,
@@ -50,5 +50,12 @@
             "prefix": "BFW-",
             "url": "https://dev.prusa3d.com/browse/BFW-<num>"
         }
-    ]
+    ],
+    "hexeditor.columnWidth": 16,
+    "hexeditor.showDecodedText": false,
+    "hexeditor.defaultEndianness": "little",
+    "hexeditor.inspectorType": "aside",
+    "[cpp]": {
+        "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+    }
 }
