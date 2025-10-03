@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# --- Configuration ---
+# Set your primary monitor's name here.
+MASTER_MONITOR="eDP"
+# ---------------------
+
+# Check if a value was provided
+if [ -z "$1" ]; then
+  echo "Usage: $0 <value>"
+  echo "Examples:"
+  echo "  $0 0.8     (sets brightness to 0.8)"
+  echo "  $0 +0.1    (increases brightness by 0.1)"
+  echo "  $0 -0.1    (decreases brightness by 0.1)"
+  exit 1
+fi
+
+VALUE=$1
+
+# Get the current brightness of the master monitor
+MASTER_CURRENT=$(xrandr --verbose | grep -A5 "^$MASTER_MONITOR" | grep -i brightness | awk '{print $2}')
+
+# Exit if the master monitor can't be found
+if [ -z "$MASTER_CURRENT" ]; then
+  echo "Error: Master monitor '$MASTER_MONITOR' not found or brightness not available."
+  exit 1
+fi
+
+# Loop through all connected monitors
+for monitor in $(xrandr --query | grep " connected" | awk '{print $1}'); do
+
+  case "$VALUE" in
+    +*|-*)
+      # Relative change: base the calculation on the master monitor
+      NEW=$(echo "$MASTER_CURRENT $VALUE" | bc)
+      echo "Syncing $monitor: setting brightness to $NEW (based on $MASTER_MONITOR)"
+      ;;
+    *)
+      # Absolute value: set all monitors to this value
+      NEW=$VALUE
+      echo "Syncing $monitor: setting brightness to $NEW"
+      ;;
+  esac
+
+  # Bounds checking to prevent errors
+  if (( $(echo "$NEW < 0.1" | bc -l) )); then NEW=0.1; fi
+  if (( $(echo "$NEW > 1.0" | bc -l) )); then NEW=1.0; fi
+
+  # Apply the new brightness
+  xrandr --output "$monitor" --brightness "$NEW"
+done

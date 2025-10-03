@@ -69,8 +69,10 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec $SCRIPT_DIR/backlight.sh +  # increase screen brightness
-bindsym XF86MonBrightnessDown exec $SCRIPT_DIR/backlight.sh - # decrease screen brightness
+# increase screen brightness
+bindsym XF86MonBrightnessUp exec "$PUBLIC_SCRIPTS_PATH/brightness +0.1"
+# decrease screen brightness
+bindsym XF86MonBrightnessDown exec "$PUBLIC_SCRIPTS_PATH/brightness -0.1"
 
 bindsym $mod+x fullscreen toggle
 
