@@ -57,5 +57,8 @@
     "hexeditor.inspectorType": "aside",
     "[cpp]": {
         "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+    },
+    "[c]": {
+        "editor.defaultFormatter": "xaver.clang-format"
     }
 }
