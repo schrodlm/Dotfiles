@@ -174,6 +174,7 @@ alias tma="tmux attach-session -t"
 
 #cppreference alias
 alias cppreference="firefox /usr/share/cppreference/doc/html/en/index.html"
+alias ranger=". ranger"
 
 # Useful environment variables
 export ZSHRC=~/.zshrc
