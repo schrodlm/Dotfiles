@@ -1,0 +1,11 @@
+[include]
+    # include the private config file.
+    path = ~/.gitconfig.local
+
+[core]
+	editor = nvim
+	pager = less -FRX
+
+[alias]
+    unstage = reset HEAD --
+    last = log -1 HEAD
