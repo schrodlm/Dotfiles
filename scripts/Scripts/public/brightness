@@ -2,7 +2,7 @@
 
 # --- Configuration ---
 # Set your primary monitor's name here.
-MASTER_MONITOR="eDP"
+MASTER_MONITOR=$(xrandr | grep ' primary' | awk '{print $1}')
 # ---------------------
 
 # Check if a value was provided
