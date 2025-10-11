@@ -24,6 +24,10 @@ mkdir ~/Apps
 git clone https://github.com/Coffelius/rofi-code.git ~Apps/rofi-code
 # then make install
 
+#8. install lazygit
+#9. install delta (pager for git)
+
+
 #Configure terminal
 #1. Install a package manger for ZSH (oh-my-zsh)
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
