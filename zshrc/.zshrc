@@ -118,6 +118,8 @@ export PATH="$PATH:$HOME/Scripts/public"
 export PATH="$PATH:/opt/nvim-linux64/bin"
 #Exposing golang 
 export PATH="$PATH:/opt/go/bin"
+export PATH="$PATH:/usr/local/go/bin"
+
 #Exposing globally built binaries
 export PATH="$PATH:/opt/bin"
 #Exposing locally built binaries

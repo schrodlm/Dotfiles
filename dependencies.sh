@@ -21,7 +21,7 @@ sudo apt install -y git tmux zsh i3wm i3blocks
 #Locally build apps
 mkdir ~/Apps
 #Install rofi-code:
-git clone https://github.com/Coffelius/rofi-code.git ~Apps/rofi-code
+git clone https://github.com/Coffelius/rofi-code.git ~/Apps/rofi-code
 # then make install
 
 #8. install lazygit
