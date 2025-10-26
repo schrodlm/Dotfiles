@@ -60,5 +60,7 @@
     },
     "[c]": {
         "editor.defaultFormatter": "xaver.clang-format"
-    }
+    },
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.allowChords": false
 }
