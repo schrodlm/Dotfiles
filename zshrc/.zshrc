@@ -190,3 +190,4 @@ export PATH="$HOME/gems/bin:$PATH"
 
 # Setup correct DPI scaling for Java applications
 export JAVA_TOOL_OPTIONS="-Dsun.java2d.uiScale=3.0 -Dsun.java2d.uiScale.enabled=true"
+source ~/Apps/git-subrepo/.rc
