@@ -118,9 +118,5 @@
     {
         "key": "ctrl+g g",
         "command": "-lazygit.openLazygit"
-    },
-    {
-        "key": "ctrl+a up",
-        "command": "workbench.action.quickOpenTerm"
     }
 ]
