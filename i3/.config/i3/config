@@ -287,3 +287,6 @@ exec --no-startup-id xset -dpms
 
 # Prevent blanking
 exec --no-startup-id xset s noblank
+
+# Optimize touchpad feel
+exec xset m 22/10 0 
