@@ -1,0 +1,4 @@
+# Sourced by Debian's Xsession system before starting the graphical session.
+# Loads .profile so environment variables (Nix, PATH, etc.) are
+# available to i3 and other apps launched outside of a login shell.
+. ~/.profile

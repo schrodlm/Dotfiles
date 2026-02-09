@@ -1,0 +1,7 @@
+
+# Covered regardless of whether the display manager uses 
+#.xprofile (common on Arch, Fedora) or .xsessionrc (Debian/Ubuntu).
+
+# Loads .profile so environment variables (Nix, PATH, etc.) are
+# available to i3 and other apps launched outside of a login shell.
+. ~/.profile
