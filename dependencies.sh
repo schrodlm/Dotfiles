@@ -6,7 +6,6 @@ sudo apt install -y git tmux zsh i3wm i3blocks
 #TODO:
 #1. install neovim (build from source)
 #2. install vscode
-#3. install rofi
 #4. install slicer (flathub)
 #5. install fzf
 #6. install go
@@ -26,6 +25,17 @@ git clone https://github.com/Coffelius/rofi-code.git ~/Apps/rofi-code
 
 #8. install lazygit
 #9. install delta (pager for git)
+
+#10. Install nix package manager
+# I do not have to build rofi or neovim from source - just from nix package manager!
+sh <(curl -L https://nixos.org/nix/install) --daemon
+
+#11. install rofi
+# Search for a package
+nix search nixpkgs rofi
+
+# Install it
+nix profile install nixpkgs#rofi
 
 
 #10. tmux needs plugin managaer
