@@ -61,5 +61,9 @@
     "[c]": {
         "editor.defaultFormatter": "xaver.clang-format"
     },
-    "terminal.integrated.allowChords": false
+    "terminal.integrated.allowChords": false,
+    "terminal.integrated.cursorBlinking": true,
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "gitlens.ai.model": "vscode",
+    "gitlens.ai.vscode.model": "copilot:gpt-4.1"
 }
