@@ -164,6 +164,20 @@ fa() {
     cd "$selected_dir" || return 1
   fi
 }
+
+# wt = "WorkTree"
+wt() {
+    # 1. List worktrees
+    # 2. Use fzf to select one
+    # 3. Extract the path (first column)
+    # 4. cd into it
+    local target=$(git worktree list | fzf | awk '{print $1}')
+
+    if [ -n "$target" ]; then
+        cd "$target"
+    fi
+}
+
 alias fzp="fzf --preview 'batcat --style=numbers --color=always --line-range :500 {}'"
 
 
