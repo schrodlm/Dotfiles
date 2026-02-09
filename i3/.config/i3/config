@@ -91,7 +91,7 @@ bindsym $mod+Shift+q kill
 
 # start rofi (a program launcher)
 bindsym $mod+d exec --no-startup-id "rofi -show-icons -icon-theme Papirus -combi-modi drun,run -show combi"
-bindsym $mod+q exec --no-startup-id rofi -show-icons -icon-theme "Papirus" -show window
+bindsym $mod+q exec --no-startup-id "rofi -show-icons -icon-theme Papirus -show window"
 #rofi-code
 bindsym $mod+Shift+d exec --no-startup-id rofi-code
 
