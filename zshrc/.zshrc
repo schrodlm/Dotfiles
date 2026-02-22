@@ -118,6 +118,8 @@ export PATH="$PATH:$HOME/Scripts/public"
 export PATH="$PATH:/opt/nvim-linux64/bin"
 #Exposing golang 
 export PATH="$PATH:/opt/go/bin"
+export PATH="$PATH:/usr/local/go/bin"
+
 #Exposing globally built binaries
 export PATH="$PATH:/opt/bin"
 #Exposing locally built binaries
@@ -162,6 +164,20 @@ fa() {
     cd "$selected_dir" || return 1
   fi
 }
+
+# wt = "WorkTree"
+wt() {
+    # 1. List worktrees
+    # 2. Use fzf to select one
+    # 3. Extract the path (first column)
+    # 4. cd into it
+    local target=$(git worktree list | fzf | awk '{print $1}')
+
+    if [ -n "$target" ]; then
+        cd "$target"
+    fi
+}
+
 alias fzp="fzf --preview 'batcat --style=numbers --color=always --line-range :500 {}'"
 
 
@@ -188,3 +204,4 @@ export PATH="$HOME/gems/bin:$PATH"
 
 # Setup correct DPI scaling for Java applications
 export JAVA_TOOL_OPTIONS="-Dsun.java2d.uiScale=3.0 -Dsun.java2d.uiScale.enabled=true"
+source ~/Apps/git-subrepo/.rc
