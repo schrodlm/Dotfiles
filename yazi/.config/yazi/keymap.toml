@@ -1,1 +1,11 @@
 # https://yazi-rs.github.io/docs/configuration/keymap/
+
+[[mgr.prepend_keymap]]
+on   = ["z"]
+run  = "plugin zoxide"
+desc = "Jump to a directory using zoxide"
+
+[[mgr.prepend_keymap]]
+on   = ["Z"]
+run  = "plugin fzf"
+desc = "Jump to a file/directory using fzf"
