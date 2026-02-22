@@ -6,7 +6,7 @@ set -e
 
 # --- System packages (apt) ---
 sudo apt update
-sudo apt install -y git tmux zsh i3wm i3blocks curl
+sudo apt install -y git tmux zsh i3wm i3blocks curl stow
 
 # --- Install Nix package manager ---
 sh <(curl -L https://nixos.org/nix/install) --daemon
@@ -29,3 +29,6 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
+
+# Apply stow (symlink configs from this repository)
+cd ~/Dotfiles && stow */
