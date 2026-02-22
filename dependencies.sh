@@ -1,50 +1,31 @@
-# Tools you will need (apt packackage manager)
+#!/bin/bash
+# Bootstrap script for a fresh Debian machine
+# Run once to set up the base system, then home-manager handles the rest
 
+set -e
+
+# --- System packages (apt) ---
 sudo apt update
-sudo apt install -y git tmux zsh i3wm i3blocks
+sudo apt install -y git tmux zsh i3wm i3blocks curl
 
-#TODO:
-#1. install neovim (build from source)
-#2. install vscode
-#4. install slicer (flathub)
-#5. install fzf
-#6. install go
-#7. install fd
-
-#Set a default wallpaper 
-#1. download wallpaper from:
-#2. set it with feh
-
-#Download pango nerd font
-
-#Locally build apps
-mkdir ~/Apps
-#Install rofi-code:
-git clone https://github.com/Coffelius/rofi-code.git ~/Apps/rofi-code
-# then make install
-
-#8. install lazygit
-#9. install delta (pager for git)
-
-#10. Install nix package manager
-# I do not have to build rofi or neovim from source - just from nix package manager!
+# --- Install Nix package manager ---
 sh <(curl -L https://nixos.org/nix/install) --daemon
 
-#11. install rofi
-# Search for a package
-nix search nixpkgs rofi
+# Source nix in current shell
+. /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 
-# Install it
-nix profile install nixpkgs#rofi
+# --- Install all user packages via home-manager flake ---
+# Packages managed by flake.nix: neovim, fzf, fd, ripgrep, lazygit, delta, go, rofi
+nix run home-manager -- switch --flake ~/Dotfiles
 
+# --- One-time setup (clones, plugins) ---
+mkdir -p ~/Apps
+git clone https://github.com/Coffelius/rofi-code.git ~/Apps/rofi-code
 
-#10. tmux needs plugin managaer
+# Tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-#Configure terminal
-#1. Install a package manger for ZSH (oh-my-zsh)
+# Oh-my-zsh + plugins
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-#2. Install used plugins 
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
