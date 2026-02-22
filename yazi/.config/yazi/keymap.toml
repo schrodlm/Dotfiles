@@ -9,3 +9,8 @@ desc = "Jump to a directory using zoxide"
 on   = ["Z"]
 run  = "plugin fzf"
 desc = "Jump to a file/directory using fzf"
+
+[[mgr.prepend_keymap]]                                                                                                                
+on   = ["g", "m"]                                                                                                                     
+run  = "cd /media"                                                                                                                    
+desc = "Go to mounted media (USB drives)"   
