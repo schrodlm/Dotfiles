@@ -22,7 +22,6 @@
         config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
           "obsidian"
           "discord"
-          "vscode"
           "spotify"
         ];
       };
@@ -58,7 +57,6 @@
       appPackages = with pkgsUnfree; [
         obsidian
         discord
-        vscode
         spotify
       ];
     in {
