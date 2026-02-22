@@ -37,6 +37,7 @@
           neovim
 
           # CLI tools
+          bat
           fzf
           fd
           ripgrep
