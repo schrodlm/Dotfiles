@@ -1,0 +1,25 @@
+# https://yazi-rs.github.io/docs/configuration/yazi/
+
+[manager]
+sort_by = "natural"
+sort_dir_first = true
+show_hidden = false
+
+[preview]
+max_width = 1000
+max_height = 1000
+
+[opener]
+edit = [
+  { run = '$EDITOR "$@"', block = true, for = "unix" },
+]
+
+[open]
+rules = [
+  { mime = "text/*", use = "edit" },
+  { mime = "image/*", use = "open" },
+  { mime = "video/*", use = "open" },
+  { mime = "application/json", use = "edit" },
+  { mime = "application/pdf", use = "open" },
+  { mime = "*", use = "open" },
+]
