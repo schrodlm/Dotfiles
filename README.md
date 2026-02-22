@@ -21,23 +21,30 @@ This repository contains my personal dotfiles for my Linux setup. Configurations
 
 ## Package Management
 
-User-facing packages are declared in `flake.nix` and managed by home-manager.
+User-facing packages are declared in `flake.nix` and managed by home-manager. There are two profiles:
 
-- **Add a package**: add it to `home.packages` in `flake.nix`, then run:
-  ```bash
-  home-manager switch --flake ~/Dotfiles
-  ```
+- **`schrodlm`** (minimal) — editors, CLI tools, languages, launchers
+- **`schrodlm-full`** — everything in minimal + desktop apps (obsidian, discord, vscode, spotify)
 
-- **Update all packages**:
-  ```bash
-  nix flake update ~/Dotfiles && home-manager switch --flake ~/Dotfiles
-  ```
+### Switch profiles
 
-### Packages managed by Nix (flake.nix)
-neovim, fzf, fd, ripgrep, lazygit, delta, go, rofi
+```bash
+# Minimal (default)
+home-manager switch --flake ~/Dotfiles#schrodlm
 
-### Packages managed by apt (dependencies.sh)
-git, tmux, zsh, i3, i3blocks, curl
+# Full (with desktop apps)
+home-manager switch --flake ~/Dotfiles#schrodlm-full
+```
+
+### Add a package
+
+Add it to `baseModules` (for both profiles) or `appPackages` (full only) in `flake.nix`, then switch.
+
+### Update all packages
+
+```bash
+nix flake update ~/Dotfiles && home-manager switch --flake ~/Dotfiles#schrodlm
+```
 
 ## Maintenance
 

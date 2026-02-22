@@ -9,15 +9,30 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, ... }: {
-    homeConfigurations."schrodlm" = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      modules = [{
+  outputs = { nixpkgs, home-manager, ... }:
+    let
+      system = "x86_64-linux";
+
+      pkgs = import nixpkgs {
+        inherit system;
+      };
+
+      pkgsUnfree = import nixpkgs {
+        inherit system;
+        config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
+          "obsidian"
+          "discord"
+          "vscode"
+          "spotify"
+        ];
+      };
+
+      baseModules = [{
         home.username = "schrodlm";
         home.homeDirectory = "/home/schrodlm";
         home.stateVersion = "24.05";
 
-        home.packages = with nixpkgs.legacyPackages.x86_64-linux; [
+        home.packages = with pkgs; [
           # Editors
           neovim
 
@@ -36,6 +51,24 @@
         ];
 
         programs.home-manager.enable = true;
+      }];
+
+      appPackages = with pkgsUnfree; [
+        obsidian
+        discord
+        vscode
+        spotify
+      ];
+    in {
+    homeConfigurations."schrodlm" = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      modules = baseModules;
+    };
+
+    homeConfigurations."schrodlm-full" = home-manager.lib.homeManagerConfiguration {
+      pkgs = pkgsUnfree;
+      modules = baseModules ++ [{
+        home.packages = appPackages;
       }];
     };
   };
