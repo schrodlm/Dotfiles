@@ -61,5 +61,7 @@
     "[c]": {
         "editor.defaultFormatter": "xaver.clang-format"
     },
-    "terminal.integrated.allowChords": false
+    "terminal.integrated.allowChords": false,
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "claudeCode.preferredLocation": "panel"
 }
