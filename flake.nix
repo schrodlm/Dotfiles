@@ -43,6 +43,7 @@
           ripgrep
           lazygit
           delta
+          yazi
 
           # Languages
           go
