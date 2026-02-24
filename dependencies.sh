@@ -15,7 +15,8 @@ sh <(curl -L https://nixos.org/nix/install) --daemon
 . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 
 # --- Install all user packages via home-manager flake ---
-# Packages managed by flake.nix: neovim, fzf, fd, ripgrep, lazygit, delta, go, rofi
+# No separate home-manager install needed: nix run fetches it ephemerally from flake inputs.
+# After first switch, programs.home-manager.enable = true makes it available as a command.
 nix run home-manager -- switch --flake ~/Dotfiles
 
 # --- One-time setup (clones, plugins) ---

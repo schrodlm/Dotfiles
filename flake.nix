@@ -1,5 +1,5 @@
 {
-  description = "schrodlm's home-manager configuration";
+  description = "schrodlm home-manager configuration";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
