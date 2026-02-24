@@ -81,6 +81,12 @@ plugins=(git zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
+# Cursor theme for Nix-installed apps (read dynamically from GNOME settings)
+if command -v gsettings &>/dev/null; then
+  export XCURSOR_THEME=$(gsettings get org.gnome.desktop.interface cursor-theme 2>/dev/null | tr -d "'")
+  export XCURSOR_SIZE=$(gsettings get org.gnome.desktop.interface cursor-size 2>/dev/null)
+fi
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
