@@ -43,6 +43,7 @@
           lazygit
           delta
           yazi
+          zoxide
 
           # Languages
           go
