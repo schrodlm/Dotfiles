@@ -86,6 +86,9 @@ tiling_drag modifier titlebar
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
+# start yazi file manager in a terminal (exit with q to get a shell in that directory)
+bindsym $mod+Shift+Return exec gnome-terminal -- zsh -ic y
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
