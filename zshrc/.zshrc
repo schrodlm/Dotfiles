@@ -214,3 +214,13 @@ source ~/Apps/git-subrepo/.rc
 
 # Allow zoxide sourcing (better cd)
 eval "$(zoxide init zsh)"
+
+# Yazi wrapper - exits into the last navigated directory
+function y() {
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+    yazi "$@" --cwd-file="$tmp"
+    if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+        builtin cd -- "$cwd"
+    fi
+    rm -f -- "$tmp"
+}
