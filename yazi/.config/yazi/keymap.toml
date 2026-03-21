@@ -10,7 +10,17 @@ on   = ["Z"]
 run  = "plugin fzf"
 desc = "Jump to a file/directory using fzf"
 
-[[mgr.prepend_keymap]]                                                                                                                
-on   = ["g", "m"]                                                                                                                     
-run  = "cd /media"                                                                                                                    
-desc = "Go to mounted media (USB drives)"   
+[[mgr.prepend_keymap]]
+on   = ["g", "m"]
+run  = "cd /media"
+desc = "Go to mounted media (USB drives)"
+
+[[mgr.prepend_keymap]]
+on   = ["g", "l"]
+run  = '''shell 'lazygit' --block'''
+desc = "Open lazygit in current directory"
+
+[[mgr.prepend_keymap]]
+on   = ["g", "v"]
+run  = '''shell 'code "$PWD"' --block'''
+desc = "Open VS Code in current directory"   
