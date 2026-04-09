@@ -66,5 +66,7 @@
     "gitlens.ai.model": "vscode",
     "gitlens.ai.vscode.model": "copilot:gpt-4.1",
     "claudeCode.preferredLocation": "panel",
-    "diffEditor.hideUnchangedRegions.enabled": true
+    "diffEditor.hideUnchangedRegions.enabled": true,
+    "C_Cpp.default.cppStandard": "c++23",
+    "clang-format.language.cpp.fallbackStyle": "Visual Studio"
 }
