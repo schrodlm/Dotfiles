@@ -196,13 +196,6 @@ alias tma="tmux attach-session -t"
 
 #cppreference alias
 alias cppreference="firefox /usr/share/cppreference/doc/html/en/index.html"
-alias ranger=". ranger"
-
-# Useful environment variables
-export ZSHRC=~/.zshrc
-export NVIM_CFG=~/.config/nvim/
-export TMUX_CFG=~/.tmux.conf
-export I3_CFG=~/.config/i3/config
 
 # Install Ruby Gems to ~/gems
 export GEM_HOME="$HOME/gems"
