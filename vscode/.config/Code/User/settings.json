@@ -68,5 +68,9 @@
     "claudeCode.preferredLocation": "panel",
     "diffEditor.hideUnchangedRegions.enabled": true,
     "C_Cpp.default.cppStandard": "c++23",
-    "clang-format.language.cpp.fallbackStyle": "Visual Studio"
+    "clang-format.language.cpp.fallbackStyle": "Visual Studio",
+    "files.watcherExclude": {
+        "**/.bloop": true,
+        "**/.metals": true
+    }
 }
