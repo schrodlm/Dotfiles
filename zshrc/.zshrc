@@ -206,7 +206,7 @@ export JAVA_TOOL_OPTIONS="-Dsun.java2d.uiScale=3.0 -Dsun.java2d.uiScale.enabled=
 source ~/Apps/git-subrepo/.rc
 
 # Allow zoxide sourcing (better cd)
-eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh --cmd cd)"
 
 # Yazi wrapper - exits into the last navigated directory
 function y() {
