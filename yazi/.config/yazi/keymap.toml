@@ -16,6 +16,11 @@ run  = "cd /media"
 desc = "Go to mounted media (USB drives)"
 
 [[mgr.prepend_keymap]]
+on   = ["M"]
+run  = "plugin mount"
+desc = "Open mount manager (USB drives)"
+
+[[mgr.prepend_keymap]]
 on   = ["g", "l"]
 run  = '''shell 'lazygit' --block'''
 desc = "Open lazygit in current directory"
