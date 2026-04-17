@@ -19,6 +19,15 @@ This repository contains my personal dotfiles for my Linux setup. Configurations
    stow nvim tmux zsh rofi i3 lazygit nix
    ```
 
+## Yazi plugins
+
+Plugins are declared in `yazi/.config/yazi/package.toml` (version-pinned) and the source is **not** checked in. `dependencies.sh` runs `ya pkg install` automatically on a fresh setup, but if you add a plugin later, install it with:
+
+```bash
+ya pkg install          # fetch any plugin listed in package.toml
+ya pkg upgrade          # update pinned revisions
+```
+
 ## Package Management
 
 User-facing packages are declared in `flake.nix` and managed by home-manager. There are two profiles:

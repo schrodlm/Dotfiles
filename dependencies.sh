@@ -51,3 +51,9 @@ fi
 
 # Apply stow (symlink configs from this repository)
 cd ~/Dotfiles && stow */
+
+# Install yazi plugins declared in yazi/.config/yazi/package.toml
+# (e.g. mount.yazi — USB mount manager bound to `M` in yazi)
+if command -v ya &>/dev/null; then
+  ya pkg install
+fi
