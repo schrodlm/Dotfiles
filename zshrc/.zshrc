@@ -197,9 +197,8 @@ alias tma="tmux attach-session -t"
 #cppreference alias
 alias cppreference="firefox /usr/share/cppreference/doc/html/en/index.html"
 
-# Install Ruby Gems to ~/gems
-export GEM_HOME="$HOME/gems"
-export PATH="$HOME/gems/bin:$PATH"
+export GEM_HOME="$HOME/.local/share/gem/ruby/3.3.0"                                                                                                
+export PATH="$GEM_HOME/bin:$PATH" 
 
 # Setup correct DPI scaling for Java applications
 export JAVA_TOOL_OPTIONS="-Dsun.java2d.uiScale=3.0 -Dsun.java2d.uiScale.enabled=true"
