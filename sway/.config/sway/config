@@ -80,7 +80,10 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
 
 # --- Window basics ---
 floating_modifier $mod normal
-tiling_drag modifier titlebar
+# Sway's tiling_drag takes one argument (enable/disable/toggle). The
+# titlebar-drag behavior i3 had baked in is on by default in sway when this is
+# enabled.
+tiling_drag enable
 
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+Return exec $term -e zsh -ic y
