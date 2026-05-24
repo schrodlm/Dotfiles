@@ -163,6 +163,7 @@ STOW_PACKAGES=(
     nvim
     rofi
     sway
+    sway-session
     swayidle
     swaylock
     tmux
