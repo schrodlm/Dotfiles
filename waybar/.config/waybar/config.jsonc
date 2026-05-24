@@ -1,0 +1,94 @@
+// Waybar config — replaces i3blocks. Modules mirror your i3blocks.conf:
+// playerctl, pulseaudio, public-ip, cpu, packages, battery, clock, temperature.
+{
+    "layer": "top",
+    "position": "bottom",
+    "height": 28,
+    "spacing": 6,
+
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": ["mpris"],
+    "modules-right": [
+        "cpu",
+        "temperature",
+        "custom/updates",
+        "custom/publicip",
+        "pulseaudio",
+        "battery",
+        "tray",
+        "clock"
+    ],
+
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{name}"
+    },
+
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+
+    "mpris": {
+        "format": "󰎈 {player_icon} {dynamic}",
+        "format-paused": "󰏤 {player_icon} {dynamic}",
+        "dynamic-order": ["artist", "title"],
+        "max-length": 60
+    },
+
+    "cpu": {
+        "interval": 10,
+        "format": "CPU {usage}%",
+        "min-length": 8
+    },
+
+    "temperature": {
+        "interval": 60,
+        "format": "󰔄 {temperatureC}°C",
+        "critical-threshold": 85
+    },
+
+    "custom/updates": {
+        "format": "󰚰 {}",
+        "exec": "checkupdates 2>/dev/null | wc -l",
+        "interval": 300,
+        "tooltip": false
+    },
+
+    "custom/publicip": {
+        "format": "{}",
+        "exec": "wget -qO - icanhazip.com",
+        "interval": "once",
+        "tooltip": false
+    },
+
+    "pulseaudio": {
+        "format": "{volume}% {icon}",
+        "format-muted": "muted",
+        "format-icons": {
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+
+    "battery": {
+        "interval": 30,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": " {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󰚥 {capacity}%"
+    },
+
+    "clock": {
+        "format": "󱑂 {:%H:%M %d-%m}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+
+    "tray": {
+        "icon-size": 18,
+        "spacing": 8
+    }
+}

@@ -1,0 +1,59 @@
+/* Minimal style matching i3bar #2f343f background */
+
+* {
+    font-family: "JetBrainsMono Nerd Font", "monospace";
+    font-size: 12px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: #2f343f;
+    color: #ffffff;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    background: transparent;
+    color: #cccccc;
+    border: none;
+    border-radius: 0;
+}
+
+#workspaces button.focused {
+    background: #3f4555;
+    color: #ffffff;
+}
+
+#workspaces button.urgent {
+    background: #900000;
+    color: #ffffff;
+}
+
+#mode {
+    background: #3f4555;
+    padding: 0 10px;
+}
+
+#cpu,
+#temperature,
+#custom-updates,
+#custom-publicip,
+#pulseaudio,
+#battery,
+#tray,
+#clock,
+#mpris {
+    padding: 0 10px;
+}
+
+#battery.warning {
+    color: #f0c674;
+}
+
+#battery.critical {
+    color: #cc6666;
+}
+
+#temperature.critical {
+    color: #cc6666;
+}

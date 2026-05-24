@@ -1,0 +1,223 @@
+# Sway config — port of the i3 config in ~/Dotfiles/i3/.config/i3/config
+# Sway docs: man 5 sway
+
+set $mod Mod4
+
+# --- User variables ---
+set $FILE_MANAGER nautilus
+set $BRIGHTNESS_MANAGER foot -e redshift
+set $VIRT_MANAGER foot -e virt-manager
+set $AUDIO_MANAGER pavucontrol
+set $BLUETOOTH_MANAGER blueman-manager
+set $PUBLIC_SCRIPTS_PATH /home/schrodlm/Scripts/public
+set $SCRIPT_DIR /home/schrodlm/Scripts
+set $WALLPAPER /home/schrodlm/Pictures/linux-wallpaper.jpg
+set $term foot
+
+font pango:monospace 10
+
+# --- Input: touchpad & trackpoint via libinput (native, no synaptics) ---
+input "type:touchpad" {
+    tap enabled
+    natural_scroll disabled
+    dwt enabled
+    accel_profile adaptive
+    pointer_accel 0.2
+    scroll_method two_finger
+    click_method clickfinger
+}
+
+input "type:pointer" {
+    accel_profile flat
+    pointer_accel 0
+}
+
+# Czech layout? Your i3 bindings use ecaron/scaron/etc. so likely 'cz'.
+# Adjust if your default is different.
+input "type:keyboard" {
+    xkb_layout "cz,us"
+    xkb_options "grp:alt_shift_toggle"
+}
+
+# --- Output: wallpaper via swaybg ---
+output * bg $WALLPAPER fill
+
+# --- Autostart ---
+exec dex --autostart --environment sway
+exec nm-applet --indicator
+exec blueman-applet
+exec swayidle -w \
+    timeout 600 'swaylock -f -i $WALLPAPER' \
+    timeout 900 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+    before-sleep 'swaylock -f -i $WALLPAPER'
+
+# Apps that always run on login (mirroring i3 exec_always)
+exec spotify
+exec thunderbird
+exec discord
+
+# --- Volume / media keys ---
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +10%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -10%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+# --- Brightness ---
+bindsym XF86MonBrightnessUp exec "$PUBLIC_SCRIPTS_PATH/brightness +0.1"
+bindsym XF86MonBrightnessDown exec "$PUBLIC_SCRIPTS_PATH/brightness -0.1"
+
+# --- Window basics ---
+floating_modifier $mod normal
+tiling_drag modifier titlebar
+
+bindsym $mod+Return exec $term
+bindsym $mod+Shift+Return exec $term -e zsh -ic y
+bindsym $mod+Shift+q kill
+bindsym $mod+x fullscreen toggle
+bindsym $mod+f fullscreen toggle
+
+# --- Launcher (rofi-wayland) ---
+bindsym $mod+d exec rofi -show-icons -icon-theme Papirus -combi-modi drun,run -show combi
+bindsym $mod+q exec rofi -show-icons -icon-theme Papirus -show window
+bindsym $mod+Shift+d exec rofi-code
+
+# --- Focus / move ---
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+uring focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+uring move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# --- Splits / layouts ---
+bindsym $mod+h split h
+bindsym $mod+v split v
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+a focus parent
+
+# --- Workspaces (Czech-layout number row) ---
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+bindsym $mod+plus workspace number $ws1
+bindsym $mod+ecaron workspace number $ws2
+bindsym $mod+scaron workspace number $ws3
+bindsym $mod+ccaron workspace number $ws4
+bindsym $mod+rcaron workspace number $ws5
+bindsym $mod+zcaron workspace number $ws6
+bindsym $mod+yacute workspace number $ws7
+bindsym $mod+aacute workspace number $ws8
+bindsym $mod+iacute workspace number $ws9
+bindsym $mod+eacute workspace number $ws10
+
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+ecaron move container to workspace number $ws2
+bindsym $mod+Shift+scaron move container to workspace number $ws3
+bindsym $mod+Shift+ccaron move container to workspace number $ws4
+bindsym $mod+Shift+rcaron move container to workspace number $ws5
+bindsym $mod+Shift+zcaron move container to workspace number $ws6
+bindsym $mod+Shift+yacute move container to workspace number $ws7
+bindsym $mod+Shift+aacute move container to workspace number $ws8
+bindsym $mod+Shift+iacute move container to workspace number $ws9
+bindsym $mod+Shift+eacute move container to workspace number $ws10
+
+# --- Reload / restart / exit ---
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit sway?' -B 'Yes' 'swaymsg exit'
+bindsym $mod+Shift+m move workspace to output next
+
+# --- Resize mode ---
+mode "resize" {
+    bindsym j resize shrink width 10 px
+    bindsym k resize grow height 10 px
+    bindsym l resize shrink height 10 px
+    bindsym uring resize grow width 10 px
+    bindsym Left resize shrink width 10 px
+    bindsym Down resize grow height 10 px
+    bindsym Up resize shrink height 10 px
+    bindsym Right resize grow width 10 px
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# --- System mode (replaces i3exit script) ---
+set $system_mode "System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (p) shutdown"
+bindsym $mod+Shift+p mode $system_mode
+mode $system_mode {
+    bindsym p exec systemctl poweroff
+    bindsym r exec systemctl reboot
+    bindsym l exec swaylock -i $WALLPAPER, mode "default"
+    bindsym e exec swaymsg exit
+    bindsym h exec systemctl hibernate, mode "default"
+    bindsym s exec systemctl suspend, mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# --- App launcher mode ---
+set $apps_mode "(f) File manager, (r) Redshift, (v) VirtualManager, (p) audio, (b) bluetooth"
+bindsym $mod+Shift+a mode $apps_mode
+mode $apps_mode {
+    bindsym f exec $FILE_MANAGER, mode "default"
+    bindsym r exec $BRIGHTNESS_MANAGER, mode "default"
+    bindsym v exec $VIRT_MANAGER, mode "default"
+    bindsym p exec $AUDIO_MANAGER, mode "default"
+    bindsym b exec $BLUETOOTH_MANAGER, mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# --- Lock ---
+bindsym $mod+b exec swaylock -i $WALLPAPER
+
+# --- Screenshots (grim + slurp + wl-copy) ---
+bindsym --release Print exec grim -g "$(slurp)" - | wl-copy
+bindsym --release Shift+Ctrl+s exec grim -g "$(slurp)" - | wl-copy
+
+# --- App-to-workspace assignment ---
+assign [app_id="thunderbird"] $ws7
+assign [class="thunderbird"] $ws7
+assign [class="discord"] $ws8
+assign [class="Spotify"] $ws9
+assign [app_id="Spotify"] $ws9
+
+# --- Theme tweaks (match i3 urgent color) ---
+client.urgent #2f3e5d #2f3e5d #ffffff #900000 #900000
+
+# --- Bar: waybar replaces i3bar/i3blocks ---
+bar {
+    swaybar_command waybar
+}
+
+# Include any host-specific overrides
+include ~/.config/sway/config.d/*
