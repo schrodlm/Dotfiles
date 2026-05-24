@@ -14,7 +14,15 @@ fi
 # --- System packages (apt) ---
 # apt install -y is already idempotent (skips installed packages).
 sudo apt update
-sudo apt install -y git tmux zsh i3wm i3blocks curl stow
+sudo apt install -y \
+    git tmux zsh curl stow \
+    i3wm i3blocks \
+    sway swaybg swayidle swaylock waybar foot foot-terminfo \
+    grim slurp wl-clipboard \
+    xdg-desktop-portal-wlr xdg-desktop-portal-gtk \
+    mako-notifier \
+    playerctl brightnessctl pavucontrol \
+    fonts-jetbrains-mono
 
 # --- Nix package manager ---
 # Check for the nix binary rather than just /nix — the directory can exist
@@ -146,6 +154,7 @@ fi
 # also symlink ~/extensions.txt — which lives at the package root, not
 # inside .config.
 STOW_PACKAGES=(
+    environment.d
     gitconfig
     i3
     lazygit
@@ -158,6 +167,7 @@ STOW_PACKAGES=(
     tmux
     vscode
     waybar
+    xdg-desktop-portal
     yazi
     zshrc
 )
