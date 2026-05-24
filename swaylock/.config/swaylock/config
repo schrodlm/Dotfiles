@@ -2,6 +2,8 @@ image=/home/schrodlm/Pictures/linux-wallpaper.jpg
 scaling=fill
 indicator-radius=100
 indicator-thickness=8
-effect-blur=8x4
+# effect-blur=8x4  # requires swaylock-effects fork; Debian ships upstream swaylock
 clock
 font=JetBrainsMono Nerd Font
+show-failed-attempts
+ignore-empty-password
