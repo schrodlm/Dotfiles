@@ -83,8 +83,6 @@ clone_if_missing() {
 
 # Pinned to specific commits/tags so a fresh install years from now reproduces
 # bit-for-bit. Bump these manually after verifying the new ref works.
-clone_if_missing https://github.com/Coffelius/rofi-code.git ~/Apps/rofi-code \
-    f0532297d528bcedc94360af71a60a44cce3974d
 clone_if_missing https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm \
     v3.1.0
 
