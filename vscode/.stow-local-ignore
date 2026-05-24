@@ -1,0 +1,3 @@
+# Don't stow these — they're metadata for dependencies.sh, not config to link.
+^/extensions\.txt$
+^/\.stow-local-ignore$
