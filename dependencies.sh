@@ -16,7 +16,7 @@ fi
 sudo apt update
 sudo apt install -y \
     git tmux zsh curl stow \
-    i3wm i3blocks \
+    i3 i3blocks \
     sway swaybg swayidle swaylock waybar foot foot-terminfo \
     grim slurp wl-clipboard \
     xdg-desktop-portal-wlr xdg-desktop-portal-gtk \
