@@ -43,9 +43,11 @@ input "type:keyboard" {
 output * bg $WALLPAPER fill
 
 # --- Autostart ---
-# Push Wayland-relevant env vars into the user dbus + systemd activation env
-# so portals, child processes, and user services see them. Must run before
-# anything that needs WAYLAND_DISPLAY / XDG_CURRENT_DESKTOP.
+# PATH/XDG_DATA_DIRS for Nix apps are set by sway-wrapper (invoked by gdm via
+# ~/.local/share/wayland-sessions/sway.desktop), so they're already in sway's
+# own env by the time this config runs. Here we only push the runtime-only
+# values (WAYLAND_DISPLAY, XDG_CURRENT_DESKTOP) into the dbus/systemd
+# activation env so portals and user-activated services see them.
 exec_always dbus-update-activation-environment --systemd \
     WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway XDG_SESSION_TYPE=wayland
 

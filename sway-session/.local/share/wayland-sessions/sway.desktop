@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Sway
+Comment=An i3-compatible Wayland compositor (with Nix-PATH wrapper)
+Exec=/home/schrodlm/.config/sway/sway-wrapper
+Type=Application
+DesktopNames=sway
