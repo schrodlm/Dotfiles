@@ -12,7 +12,6 @@
         "cpu",
         "temperature",
         "custom/updates",
-        "custom/publicip",
         "pulseaudio",
         "battery",
         "tray",
@@ -50,15 +49,8 @@
 
     "custom/updates": {
         "format": "󰚰 {}",
-        "exec": "checkupdates 2>/dev/null | wc -l",
-        "interval": 300,
-        "tooltip": false
-    },
-
-    "custom/publicip": {
-        "format": "{}",
-        "exec": "wget -qO - icanhazip.com",
-        "interval": "once",
+        "exec": "apt list --upgradable 2>/dev/null | tail -n +2 | wc -l",
+        "interval": 1800,
         "tooltip": false
     },
 
