@@ -86,6 +86,15 @@ clone_if_missing() {
 clone_if_missing https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm \
     v3.1.0
 
+# rofi-vscode-picker: small Python script that replaces the unmaintained
+# Coffelius/rofi-code (broken on rofi 2.0). Cloned into ~/dev and symlinked
+# into ~/.local/bin so sway's $mod+Shift+d binding finds it.
+mkdir -p ~/dev ~/.local/bin
+clone_if_missing https://github.com/schrodlm/rofi-vscode-picker.git \
+    ~/dev/rofi-vscode-picker \
+    97c09adc498bc46e840fa96b013696a61bde2bc5
+ln -sf ~/dev/rofi-vscode-picker/rofi-vscode-picker ~/.local/bin/rofi-vscode-picker
+
 # --- Oh-my-zsh + plugins ---
 # Check the installer's marker file rather than the directory: a partial
 # install can leave the dir behind without oh-my-zsh.sh.
