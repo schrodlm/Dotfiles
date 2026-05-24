@@ -43,7 +43,7 @@ fi
 # --- Home-manager (idempotent: `switch` is the canonical way to re-apply) ---
 # `-b backup` lets HM rename conflicting files (e.g. ones stow placed earlier)
 # to *.backup instead of aborting the whole run.
-nix run home-manager -- switch --flake ~/Dotfiles -b backup
+nix run home-manager -- switch --flake ~/Dotfiles#schrodlm-full -b backup
 
 # --- One-time clones ---
 mkdir -p ~/Apps
@@ -155,6 +155,7 @@ fi
 # inside .config.
 STOW_PACKAGES=(
     environment.d
+    foot
     gitconfig
     i3
     lazygit
