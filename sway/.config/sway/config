@@ -97,7 +97,10 @@ bindsym $mod+f fullscreen toggle
 # explicit list of modes to combine, otherwise rofi shows "unsure what to do".
 bindsym $mod+d exec rofi -show-icons -icon-theme Papirus -combi-modes "drun#run" -show combi -modes combi,drun,run,window
 bindsym $mod+q exec rofi -show-icons -icon-theme Papirus -show window
-bindsym $mod+Shift+d exec rofi-code
+# Replaces the unmaintained rofi-code (broken on rofi 2.0). The picker is at
+# https://github.com/schrodlm/rofi-vscode-picker (in ~/dev/), symlinked into
+# ~/.local/bin.
+bindsym $mod+Shift+d exec rofi-vscode-picker
 
 # --- Focus / move ---
 bindsym $mod+j focus left
