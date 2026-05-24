@@ -90,8 +90,10 @@ bindsym $mod+Shift+Return exec $term -e zsh -ic y
 bindsym $mod+Shift+q kill
 bindsym $mod+f fullscreen toggle
 
-# --- Launcher (rofi-wayland) ---
-bindsym $mod+d exec rofi -show-icons -icon-theme Papirus -combi-modi drun,run -show combi
+# --- Launcher (rofi, via XWayland on Debian) ---
+# rofi 1.7 renamed `-combi-modi` to `-combi-modes`. The `combi` mode needs an
+# explicit list of modes to combine, otherwise rofi shows "unsure what to do".
+bindsym $mod+d exec rofi -show-icons -icon-theme Papirus -combi-modes "drun#run" -show combi -modes combi,drun,run,window
 bindsym $mod+q exec rofi -show-icons -icon-theme Papirus -show window
 bindsym $mod+Shift+d exec rofi-code
 
