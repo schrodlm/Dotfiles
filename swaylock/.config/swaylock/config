@@ -1,0 +1,7 @@
+image=/home/schrodlm/Pictures/linux-wallpaper.jpg
+scaling=fill
+indicator-radius=100
+indicator-thickness=8
+effect-blur=8x4
+clock
+font=JetBrainsMono Nerd Font
