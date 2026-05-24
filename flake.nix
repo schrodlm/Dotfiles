@@ -50,6 +50,9 @@
 
           # Launchers
           rofi
+
+          # Fonts — needed for waybar glyphs and the swaylock indicator font
+          nerd-fonts.jetbrains-mono
         ];
 
         programs.home-manager.enable = true;
