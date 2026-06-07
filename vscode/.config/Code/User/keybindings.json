@@ -126,5 +126,15 @@
             "text": "\u001b\r"
         },
         "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+[Comma]",
+        "command": "bookmarks.toggle",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+alt+k",
+        "command": "-bookmarks.toggle",
+        "when": "editorTextFocus"
     }
 ]
