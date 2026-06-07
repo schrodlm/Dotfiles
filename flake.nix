@@ -15,18 +15,16 @@
 
       pkgs = import nixpkgs {
         inherit system;
-      };
-
-      pkgsUnfree = import nixpkgs {
-        inherit system;
-        config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
+        config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
           "obsidian"
           "discord"
           "spotify"
         ];
       };
-
-      baseModules = [{
+    in {
+    homeConfigurations."schrodlm" = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      modules = [{
         home.username = "schrodlm";
         home.homeDirectory = "/home/schrodlm";
         home.stateVersion = "24.05";
@@ -53,26 +51,17 @@
 
           # Fonts — needed for waybar glyphs and the swaylock indicator font
           nerd-fonts.jetbrains-mono
+
+          # Apps (unfree)
+          obsidian
+          discord
+          spotify
+
+          # Electronics
+          kicad
         ];
 
         programs.home-manager.enable = true;
-      }];
-
-      appPackages = with pkgsUnfree; [
-        obsidian
-        discord
-        spotify
-      ];
-    in {
-    homeConfigurations."schrodlm" = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      modules = baseModules;
-    };
-
-    homeConfigurations."schrodlm-full" = home-manager.lib.homeManagerConfiguration {
-      pkgs = pkgsUnfree;
-      modules = baseModules ++ [{
-        home.packages = appPackages;
       }];
     };
   };
