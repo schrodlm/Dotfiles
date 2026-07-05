@@ -4,7 +4,7 @@
 # etc.) can find Nix-installed apps. gdm starts sway with a minimal env that
 # does NOT include systemd-user's environment.d additions; we fix that here.
 
-export PATH="$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:${PATH:-/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin}"
+export PATH="$HOME/.local/bin:$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:${PATH:-/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin}"
 export XDG_DATA_DIRS="$HOME/.nix-profile/share:/nix/var/nix/profiles/default/share:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
 
 exec sway "$@"

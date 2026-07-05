@@ -19,7 +19,7 @@ font pango:monospace 10
 # --- Input: touchpad & trackpoint via libinput (native, no synaptics) ---
 input "type:touchpad" {
     tap enabled
-    natural_scroll disabled
+    natural_scroll enabled
     dwt enabled
     accel_profile adaptive
     pointer_accel 0.2
@@ -32,8 +32,6 @@ input "type:pointer" {
     pointer_accel 0
 }
 
-# Czech layout? Your i3 bindings use ecaron/scaron/etc. so likely 'cz'.
-# Adjust if your default is different.
 input "type:keyboard" {
     xkb_layout "cz,us"
     xkb_options "grp:alt_shift_toggle"
@@ -41,6 +39,24 @@ input "type:keyboard" {
 
 # --- Output: wallpaper via swaybg ---
 output * bg $WALLPAPER fill
+
+# --- Monitor layout (replaces ~/Scripts/prague_two_monitors.sh) ---
+# When the Samsung ultrawide is connected, put it on the left as primary;
+# laptop screen sits to its right. Logical coordinates after scale:
+#   HDMI-A-1: 3440x1440 at (0,0)        → x in [0..3440)
+#   eDP-1:    1920x1080 at (3440,0)     → x in [3440..5360), scale=2 of native 4K
+# If only the laptop is connected, the HDMI-A-1 block is a no-op and eDP-1
+# stays at 0,0 (sway falls back to defaults).
+output HDMI-A-1 {
+    mode 3440x1440@99.980Hz
+    position 0 0
+    scale 1.0
+}
+output eDP-1 {
+    mode 3840x2160@60Hz
+    position 3440 0
+    scale 2.0
+}
 
 # --- Autostart ---
 # PATH/XDG_DATA_DIRS for Nix apps are set by sway-wrapper (invoked by gdm via
@@ -74,9 +90,7 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # --- Brightness ---
-# brightnessctl talks to /sys/class/backlight directly. The i3 script used
-# `xrandr --brightness` which is a no-op on Wayland (it only adjusts XWayland's
-# virtual screen, not the real backlight).
+# brightnessctl talks to /sys/class/backlight directly
 bindsym XF86MonBrightnessUp exec brightnessctl set 10%+
 bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
 
@@ -99,7 +113,7 @@ bindsym $mod+d exec rofi -show-icons -icon-theme Papirus -combi-modes "drun#run"
 bindsym $mod+q exec rofi -show-icons -icon-theme Papirus -show window
 # Replaces the unmaintained rofi-code (broken on rofi 2.0). The picker is at
 # https://github.com/schrodlm/rofi-vscode-picker (in ~/dev/), symlinked into
-# ~/.local/bin.
+# ~/.local/bin (which sway-wrapper puts on PATH).
 bindsym $mod+Shift+d exec rofi-vscode-picker
 
 # --- Focus / move ---
@@ -140,7 +154,7 @@ set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
-set $ws9 "9"
+set $ws9 "9 "
 set $ws10 "10"
 
 bindsym $mod+plus workspace number $ws1
@@ -227,10 +241,6 @@ bindsym --release Print exec grim -g "$(slurp)" - | wl-copy
 bindsym --release Shift+Ctrl+s exec grim -g "$(slurp)" - | wl-copy
 
 # --- App-to-workspace assignment ---
-# Both app_id (Wayland-native) and class (XWayland) rules are kept where it
-# matters: Thunderbird may run native or fall back to XWayland depending on
-# MOZ_ENABLE_WAYLAND. Discord and Spotify are XWayland-only on Debian.
-assign [app_id="thunderbird"] $ws7
 assign [class="thunderbird"] $ws7
 assign [class="discord"] $ws8
 assign [class="Spotify"] $ws9
