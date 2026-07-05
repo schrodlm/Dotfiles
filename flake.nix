@@ -16,7 +16,6 @@
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
-          "obsidian"
           "discord"
           "spotify"
         ];
@@ -53,7 +52,10 @@
           nerd-fonts.jetbrains-mono
 
           # Apps (unfree)
-          obsidian
+          # Obsidian is installed via Flatpak (md.obsidian.Obsidian), not Nix:
+          # Nix-packaged Electron apps expect /run/opengl-driver/ (NixOS-only)
+          # and fail to load GL on Debian without nixGL. Same rationale as VS
+          # Code being apt-installed — see dependencies.sh.
           discord
           spotify
 

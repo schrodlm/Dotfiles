@@ -30,30 +30,28 @@ ya pkg upgrade          # update pinned revisions
 
 ## Package Management
 
-User-facing packages are declared in `flake.nix` and managed by home-manager. There are two profiles:
-
-- **`schrodlm`** (minimal) — editors, CLI tools, languages, launchers
-- **`schrodlm-full`** — everything in minimal + desktop apps (obsidian, discord, vscode, spotify)
-
-### Switch profiles
+User-facing packages are declared in `flake.nix` and managed by home-manager under a single `schrodlm` configuration.
 
 ```bash
-# Minimal (default)
 home-manager switch --flake ~/Dotfiles#schrodlm
-
-# Full (with desktop apps)
-home-manager switch --flake ~/Dotfiles#schrodlm-full
 ```
 
 ### Add a package
 
-Add it to `baseModules` (for both profiles) or `appPackages` (full only) in `flake.nix`, then switch.
+Add it to `home.packages` in `flake.nix`, then switch.
 
 ### Update all packages
 
 ```bash
 nix flake update ~/Dotfiles && home-manager switch --flake ~/Dotfiles#schrodlm
 ```
+
+### Electron apps (VS Code, Obsidian)
+
+These are deliberately **not** installed via Nix. Nix-packaged Electron apps expect `/run/opengl-driver/` (NixOS-only) and fail to load GL on Debian with `MESA-LOADER` errors. `dependencies.sh` installs:
+
+- VS Code via apt (Microsoft's repo)
+- Obsidian via Flatpak (`md.obsidian.Obsidian` from Flathub, user scope)
 
 ## Maintenance
 
