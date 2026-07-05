@@ -191,6 +191,7 @@ STOW_PACKAGES=(
     xdg-desktop-portal
     yazi
     zshrc
+    zshrc-p10k
 )
 cd ~/Dotfiles && stow --restow "${STOW_PACKAGES[@]}"
 
