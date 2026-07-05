@@ -22,7 +22,8 @@ sudo apt install -y \
     xdg-desktop-portal-wlr xdg-desktop-portal-gtk \
     mako-notifier \
     playerctl brightnessctl pavucontrol \
-    fonts-jetbrains-mono
+    fonts-jetbrains-mono \
+    flatpak
 
 # --- Nix package manager ---
 # Check for the nix binary rather than just /nix — the directory can exist
@@ -43,7 +44,7 @@ fi
 # --- Home-manager (idempotent: `switch` is the canonical way to re-apply) ---
 # `-b backup` lets HM rename conflicting files (e.g. ones stow placed earlier)
 # to *.backup instead of aborting the whole run.
-nix run home-manager -- switch --flake ~/Dotfiles#schrodlm-full -b backup
+nix run home-manager -- switch --flake ~/Dotfiles#schrodlm -b backup
 
 # --- One-time clones ---
 mkdir -p ~/Apps
@@ -149,6 +150,17 @@ if [ -f ~/Dotfiles/vscode/extensions.txt ]; then
         code --install-extension "$ext" --force \
             || echo "warn: failed to install '$ext'" >&2
     done < ~/Dotfiles/vscode/extensions.txt
+fi
+
+# --- Obsidian (Flatpak) ---
+# Same Electron-on-non-NixOS problem as VS Code: a Nix-built Obsidian expects
+# /run/opengl-driver/ and dies with MESA-LOADER errors on Debian. Flatpak ships
+# its own GL stack via freedesktop runtime extensions, sidestepping the issue.
+# `--user` keeps it out of /var and avoids needing root for app updates.
+if ! flatpak info --user md.obsidian.Obsidian &>/dev/null; then
+    flatpak remote-add --user --if-not-exists flathub \
+        https://flathub.org/repo/flathub.flatpakrepo
+    flatpak install -y --user flathub md.obsidian.Obsidian
 fi
 
 # --- Stow ---
