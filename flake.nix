@@ -50,6 +50,8 @@
 
           # Fonts — needed for waybar glyphs and the swaylock indicator font
           nerd-fonts.jetbrains-mono
+          # foot.ini requests SauceCodePro Nerd Font Mono
+          nerd-fonts.sauce-code-pro
 
           # Apps (unfree)
           # Obsidian is installed via Flatpak (md.obsidian.Obsidian), not Nix:
@@ -62,6 +64,10 @@
           # Electronics
           kicad
         ];
+
+        # Without this, fonts from home.packages never reach the host
+        # fontconfig on non-NixOS systems and apps silently fall back
+        fonts.fontconfig.enable = true;
 
         programs.home-manager.enable = true;
       }];
