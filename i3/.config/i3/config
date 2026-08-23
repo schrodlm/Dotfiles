@@ -96,6 +96,8 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec --no-startup-id "rofi -show-icons -icon-theme Papirus -combi-modi drun,run -show combi"
 bindsym $mod+q exec --no-startup-id "rofi -show-icons -icon-theme Papirus -show window"
 bindsym $mod+Shift+d exec --no-startup-id rofi-vscode-picker
+bindsym $mod+Shift+t exec env PATH="$HOME/.local/bin:$PATH" ~/.cargo/bin/rofi-translate
+
 
 # change focus
 bindsym $mod+j focus left
