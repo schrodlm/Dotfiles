@@ -7,10 +7,10 @@
 #   900s idle  → turn output off; on activity, turn it back on
 #   on suspend → lock screen first
 
-timeout 600 'swaylock -f -i /home/schrodlm/Pictures/linux-wallpaper.jpg'
+timeout 600 'swaylock -f'
 timeout 900 'swaymsg "output * power off"' resume 'swaymsg "output * power on"'
-before-sleep 'swaylock -f -i /home/schrodlm/Pictures/linux-wallpaper.jpg'
+before-sleep 'swaylock -f'
 # Loginctl integration: any tool calling `loginctl lock-session` triggers
 # the lock hook.
-lock 'swaylock -f -i /home/schrodlm/Pictures/linux-wallpaper.jpg'
+lock 'swaylock -f'
 unlock 'pkill -USR1 swaylock'
