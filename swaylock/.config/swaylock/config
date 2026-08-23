@@ -1,3 +1,4 @@
+# Literal path on purpose, swaylock does not expand ~ or $HOME here
 image=/home/schrodlm/Pictures/linux-wallpaper.jpg
 scaling=fill
 indicator-radius=100
