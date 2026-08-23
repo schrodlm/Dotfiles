@@ -9,9 +9,9 @@ set $BRIGHTNESS_MANAGER foot -e redshift
 set $VIRT_MANAGER foot -e virt-manager
 set $AUDIO_MANAGER pavucontrol
 set $BLUETOOTH_MANAGER blueman-manager
-set $PUBLIC_SCRIPTS_PATH /home/schrodlm/Scripts/public
-set $SCRIPT_DIR /home/schrodlm/Scripts
-set $WALLPAPER /home/schrodlm/Pictures/linux-wallpaper.jpg
+set $PUBLIC_SCRIPTS_PATH $HOME/Scripts/public
+set $SCRIPT_DIR $HOME/Scripts
+set $WALLPAPER $HOME/Pictures/linux-wallpaper.jpg
 set $term foot
 
 font pango:monospace 10
