@@ -114,7 +114,7 @@ bindsym $mod+q exec rofi -show-icons -icon-theme Papirus -show window
 # Replaces the unmaintained rofi-code (broken on rofi 2.0). The picker is at
 # https://github.com/schrodlm/rofi-vscode-picker (in ~/dev/), symlinked into
 # ~/.local/bin (which sway-wrapper puts on PATH).
-bindsym $mod+Shift+d exec rofi-vscode-picker
+bindsym $mod+Shift+d exec ~/.local/bin/rofi-vscode-picker
 
 # --- Focus / move ---
 bindsym $mod+j focus left
