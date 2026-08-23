@@ -115,6 +115,7 @@ bindsym $mod+q exec rofi -show-icons -icon-theme Papirus -show window
 # https://github.com/schrodlm/rofi-vscode-picker (in ~/dev/), symlinked into
 # ~/.local/bin (which sway-wrapper puts on PATH).
 bindsym $mod+Shift+d exec ~/.local/bin/rofi-vscode-picker
+bindsym $mod+Shift+t exec env PATH="$HOME/.local/bin:$PATH" ~/.cargo/bin/rofi-translate
 
 # --- Focus / move ---
 bindsym $mod+j focus left
