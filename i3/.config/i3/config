@@ -75,8 +75,6 @@ bindsym XF86MonBrightnessUp exec "$PUBLIC_SCRIPTS_PATH/brightness +0.1"
 # decrease screen brightness
 bindsym XF86MonBrightnessDown exec "$PUBLIC_SCRIPTS_PATH/brightness -0.1"
 
-bindsym $mod+x fullscreen toggle
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
