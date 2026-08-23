@@ -95,7 +95,6 @@ clone_if_missing https://github.com/schrodlm/rofi-vscode-picker.git \
     ~/dev/rofi-vscode-picker \
     97c09adc498bc46e840fa96b013696a61bde2bc5
 ln -sf ~/dev/rofi-vscode-picker/rofi-vscode-picker ~/.local/bin/rofi-vscode-picker
-
 # --- Oh-my-zsh + plugins ---
 # Check the installer's marker file rather than the directory: a partial
 # install can leave the dir behind without oh-my-zsh.sh.
@@ -179,6 +178,9 @@ ln -sf "$ARGOS_VENV/bin/argos-translate" "$ARGOS_VENV/bin/argospm" ~/.local/bin/
 if ! "$ARGOS_VENV/bin/argospm" list 2>/dev/null | grep -qx 'translate-en_cs'; then
     "$ARGOS_VENV/bin/argospm" install translate-en_cs
 fi
+
+# Install rust binary for rofi translations
+cargo install --git https://github.com/schrodlm/rofi-translate
 
 # --- Stow ---
 # `stow --restow` re-links cleanly even if links already exist.
