@@ -15,7 +15,7 @@ set $BRIGHTNESS_MANAGER i3-sensible-terminal -e redshift
 set $VIRT_MANAGER i3-sensible-terminal -e virt-manager
 set $AUDIO_MANAGER pavucontrol
 set $BLUETOOTH_MANAGER blueman-manager
-set $PUBLIC_SCRIPTS_PATH /home/schrodlm/Scripts/public
+set $PUBLIC_SCRIPTS_PATH $HOME/Scripts/public
 
 # 2. Fonts
 # Font for window titles. Will also be used by the bar unless a different font
@@ -23,8 +23,8 @@ set $PUBLIC_SCRIPTS_PATH /home/schrodlm/Scripts/public
 font pango:monospace 10
 
 #3. Directories
-set $SCRIPT_DIR /home/schrodlm/Scripts
-set $WALLPAPER /home/schrodlm/Pictures/linux-wallpaper.jpg
+set $SCRIPT_DIR $HOME/Scripts
+set $WALLPAPER $HOME/Pictures/linux-wallpaper.jpg
 
 # Dependencies
   # 1. USED BY I3 
