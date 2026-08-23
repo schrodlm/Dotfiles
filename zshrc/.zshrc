@@ -202,7 +202,7 @@ export PATH="$GEM_HOME/bin:$PATH"
 
 # Setup correct DPI scaling for Java applications
 export JAVA_TOOL_OPTIONS="-Dsun.java2d.uiScale=3.0 -Dsun.java2d.uiScale.enabled=true"
-source ~/Apps/git-subrepo/.rc
+[ -f ~/Apps/git-subrepo/.rc ] && source ~/Apps/git-subrepo/.rc
 
 # Allow zoxide sourcing (better cd)
 eval "$(zoxide init zsh --cmd cd)"
