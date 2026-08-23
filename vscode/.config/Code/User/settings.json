@@ -88,6 +88,9 @@
   "terminal.integrated.cursorStyle": "block",
 
   // 4. Smooth rendering & padding
-  "terminal.integrated.gpuAcceleration": "on"
+"terminal.integrated.gpuAcceleration": "on",
+"[rust]": {
+    "editor.defaultFormatter": "jinxdash.prettier-rust"
+}
   
 }
