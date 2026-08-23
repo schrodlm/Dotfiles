@@ -204,9 +204,6 @@ export PATH="$GEM_HOME/bin:$PATH"
 export JAVA_TOOL_OPTIONS="-Dsun.java2d.uiScale=3.0 -Dsun.java2d.uiScale.enabled=true"
 [ -f ~/Apps/git-subrepo/.rc ] && source ~/Apps/git-subrepo/.rc
 
-# Allow zoxide sourcing (better cd)
-eval "$(zoxide init zsh --cmd cd)"
-
 # Yazi wrapper - exits into the last navigated directory
 function y() {
     local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
@@ -216,3 +213,6 @@ function y() {
     fi
     rm -f -- "$tmp"
 }
+
+# Better cd. zoxide hooks the prompt and wants to be initialized last
+eval "$(zoxide init zsh --cmd cd)"
