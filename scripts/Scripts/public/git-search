@@ -119,6 +119,8 @@ else
     done
     
     if [ "$search_type" = "msg" ] || [ "$search_type" = "both" ]; then
+        # format_args holds several flags, splitting is the point
+        # shellcheck disable=SC2086
         git log --grep="$pattern" --extended-regexp $format_args
     else
         echo "OR search with --code-only not supported (use AND search for code)"
