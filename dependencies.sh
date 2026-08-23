@@ -15,7 +15,7 @@ fi
 # apt install -y is already idempotent (skips installed packages).
 sudo apt update
 sudo apt install -y \
-    git tmux zsh curl stow \
+    git tmux zsh curl stow python3-venv \
     i3 i3blocks \
     sway swaybg swayidle swaylock waybar foot foot-terminfo \
     grim slurp wl-clipboard \
@@ -161,6 +161,23 @@ if ! flatpak info --user md.obsidian.Obsidian &>/dev/null; then
     flatpak remote-add --user --if-not-exists flathub \
         https://flathub.org/repo/flathub.flatpakrepo
     flatpak install -y --user flathub md.obsidian.Obsidian
+fi
+
+# --- Argos Translate (offline neural machine translation) ---
+# Debian's system Python is externally managed (PEP 668), so the package
+# lives in a dedicated venv
+ARGOS_VENV="$HOME/.venvs/argos"
+if [ ! -x "$ARGOS_VENV/bin/argospm" ]; then
+    python3 -m venv "$ARGOS_VENV"
+    "$ARGOS_VENV/bin/pip" install argostranslate==1.11.0
+fi
+ln -sf "$ARGOS_VENV/bin/argos-translate" "$ARGOS_VENV/bin/argospm" ~/.local/bin/
+
+# Language models are user data, not code — argospm stores them in
+# ~/.local/share/argos-translate/packages. Guarded so re-runs don't
+# re-download the ~80 MB model.
+if ! "$ARGOS_VENV/bin/argospm" list 2>/dev/null | grep -qx 'translate-en_cs'; then
+    "$ARGOS_VENV/bin/argospm" install translate-en_cs
 fi
 
 # --- Stow ---
