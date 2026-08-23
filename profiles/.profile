@@ -17,7 +17,9 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 
-. /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+if [ -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]; then
+    . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+fi
 
 
 # set PATH so it includes user's private bin if it exists
@@ -25,10 +27,25 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
+# set PATH so it includes GOPATH/bin if it exists
+if [ -x "$(command -v go)" ] && [ -d "$(go env GOPATH)/bin" ]; then
+    PATH="$(go env GOPATH)/bin:$PATH"
+fi
+
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+# `.` not `source` — this file is read by POSIX sh (dash) via .xsessionrc
+[ -s "/home/schrodlm/.jabba/jabba.sh" ] && . "/home/schrodlm/.jabba/jabba.sh"
 
-export STM32CubeMX_PATH=/home/schrodlm/Apps/stm32CubeMx15/installation
+
+# Added by Toolbox App
+export PATH="$PATH:/home/schrodlm/.local/share/JetBrains/Toolbox/scripts"
+
+
+export STM32CubeMX_PATH=/home/schrodlm/Apps/cubemx/installation
+
+# rustup's PATH hook — prepends ~/.cargo/bin if not already present
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
