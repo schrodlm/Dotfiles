@@ -231,6 +231,10 @@ STOW_PACKAGES=(
 )
 cd ~/Dotfiles && stow --restow "${STOW_PACKAGES[@]}"
 
+# Repo-managed git hooks (pre-commit linting). core.hooksPath is
+# per-clone config, so wire it here instead of documenting a manual step.
+git -C ~/Dotfiles config core.hooksPath githooks
+
 # Install yazi plugins declared in yazi/.config/yazi/package.toml
 # (e.g. mount.yazi — USB mount manager bound to `M` in yazi)
 # `hash -r` flushes the shell's command cache so a freshly-installed `ya`

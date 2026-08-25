@@ -1,0 +1,84 @@
+#!/bin/bash
+# Lint exactly what is being committed. Every staged file is checked as
+# its staged blob, not the working tree copy, so a partially staged file
+# is linted the way it will land in history.
+# Active because dependencies.sh sets `git config core.hooksPath githooks`.
+
+set -uo pipefail
+
+fail=0
+
+note_fail() { echo "pre-commit: $1" >&2; fail=1; }
+skip_tool() { echo "pre-commit: $1 not installed, skipped $2 (home-manager switch installs it)" >&2; }
+
+mapfile -t staged < <(git diff --cached --name-only --diff-filter=ACMR)
+[ "${#staged[@]}" -eq 0 ] && exit 0
+
+tmpdir=$(mktemp -d)
+trap 'rm -rf "$tmpdir"' EXIT
+
+for path in "${staged[@]}"; do
+    blob="$tmpdir/${path//\//__}"
+    git show ":$path" > "$blob" 2>/dev/null || continue
+
+    case "$path" in
+        *.lua)
+            if command -v stylua >/dev/null; then
+                stylua --config-path stylua.toml --check "$blob" >/dev/null 2>&1 \
+                    || note_fail "stylua: $path is not formatted, run: stylua $path"
+            else skip_tool stylua "$path"; fi
+            continue
+            ;;
+        *.py)
+            if command -v ruff >/dev/null; then
+                ruff check --quiet "$blob" || note_fail "ruff: findings in $path"
+            else skip_tool ruff "$path"; fi
+            continue
+            ;;
+        i3/.config/i3/config)
+            if command -v i3 >/dev/null; then
+                i3 -C -c "$blob" >/dev/null 2>&1 || note_fail "i3 -C: $path does not validate"
+            fi
+            continue
+            ;;
+        sway/.config/sway/config)
+            if command -v sway >/dev/null; then
+                sway --validate -c "$blob" >/dev/null 2>&1 || note_fail "sway --validate: $path does not validate"
+            fi
+            continue
+            ;;
+    esac
+
+    shebang=$(head -n 1 "$blob")
+
+    # zsh first: shellcheck cannot parse zsh, so route by shebang or the
+    # known sourced zsh files that carry no shebang.
+    is_zsh=0
+    case "$shebang" in
+        '#!'*/zsh|'#!'*'env zsh') is_zsh=1 ;;
+    esac
+    case "$path" in
+        zshrc/.zshrc|zshrc/.zshenv|zshrc-p10k/.p10k.zsh) is_zsh=1 ;;
+    esac
+    if [ "$is_zsh" -eq 1 ]; then
+        zsh -n "$blob" || note_fail "zsh -n: syntax error in $path"
+        continue
+    fi
+
+    # Shell files come in three shapes here: *.sh, executables with a
+    # sh/bash shebang, and sourced files carrying a shell= directive.
+    is_shell=0
+    case "$path" in *.sh) is_shell=1 ;; esac
+    case "$shebang" in
+        '#!'*/bash|'#!'*'env bash') is_shell=1 ;;
+        '#!'*/sh|'#!'*'env sh') is_shell=1 ;;
+    esac
+    case "$(head -n 2 "$blob")" in *'shellcheck shell='*) is_shell=1 ;; esac
+    if [ "$is_shell" -eq 1 ]; then
+        if command -v shellcheck >/dev/null; then
+            shellcheck "$blob" || note_fail "shellcheck: findings in $path"
+        else skip_tool shellcheck "$path"; fi
+    fi
+done
+
+exit "$fail"
