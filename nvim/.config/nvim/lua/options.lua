@@ -66,3 +66,26 @@ vim.api.nvim_create_user_command("DiagnosticToggle", function()
 		signs = not vt,
 	}
 end, { desc = "toggle diagnostic" })
+
+--- OpenScad bindings ---
+-- Default mappings (buffer-local in .scad files):
+--   <Enter> toggle cheatsheet, <A-h> fuzzy help, <A-m> manual, <A-o> open in OpenSCAD
+vim.g.openscad_default_mappings = true
+
+-- PDF viewer binary used by <A-m> / :OpenscadManual
+-- Linux:  vim.g.openscad_pdf_cmd = 'zathura'
+-- macOS:  vim.g.openscad_pdf_cmd = 'open'
+vim.g.openscad_pdf_cmd = 'evince'
+
+-- Fuzzy finder for the help picker.
+-- 'auto'    — use fzf-lua if installed, fall back to snacks.nvim (default)
+-- 'fzf-lua' — always use fzf-lua
+-- 'snacks'  — always use snacks.nvim
+vim.g.openscad_fuzzy_finder = 'auto'
+
+-- Load LuaSnip snippets on startup
+vim.g.openscad_load_snippets = false
+
+-- Automatically open the current file in OpenSCAD on startup
+vim.g.openscad_auto_open = false
+
