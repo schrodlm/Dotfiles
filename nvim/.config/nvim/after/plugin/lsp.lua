@@ -36,26 +36,24 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 -- 	},
 -- }
 
--- adding lsp server package manager (mason)
-require("mason").setup()
-require("mason-lspconfig").setup_handlers({
-	function(server_name)
-		require("lspconfig")[server_name].setup{
-			on_attach = on_attach,
-			capabilities = capabilities
-		}
-	end,
-	
-	["lua_ls"] = function()
-		require('neodev').setup()
-		require('lspconfig').lua_ls.setup {
-			on_attach = on_attach,
-			capabilities = capabilities,
-			Lua = {
-				workspace = {checkThirdParty = false},
-				telemetry = {enable = false},
-			},
-		}
-	end,
+-- defaults applied to every LSP server
+vim.lsp.config('*', {
+	on_attach = on_attach,
+	capabilities = capabilities,
 })
+
+require('neodev').setup()
+vim.lsp.config('lua_ls', {
+	settings = {
+		Lua = {
+			workspace = {checkThirdParty = false},
+			telemetry = {enable = false},
+		},
+	},
+})
+
+-- adding lsp server package manager (mason)
+-- mason-lspconfig v2 auto-enables every server installed via mason
+require("mason").setup()
+require("mason-lspconfig").setup()
 
