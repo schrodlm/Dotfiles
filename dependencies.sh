@@ -162,6 +162,23 @@ if ! flatpak info --user md.obsidian.Obsidian &>/dev/null; then
     flatpak install -y --user flathub md.obsidian.Obsidian
 fi
 
+# --- OpenSCAD (Flatpak, beta branch) ---
+# Installed from flathub-beta because the stable flathub build is the ancient
+# 2021.01 release.
+if ! flatpak info --user org.openscad.OpenSCAD &>/dev/null; then
+    flatpak remote-add --user --if-not-exists flathub-beta \
+        https://flathub.org/beta-repo/flathub-beta.flatpakrepo
+    flatpak install -y --user flathub-beta org.openscad.OpenSCAD
+fi
+
+# The beta build ships with zero filesystem permissions — it launches but
+# can't read any file passed to it. Grant home access.
+flatpak override --user --filesystem=home org.openscad.OpenSCAD
+
+# openscad.nvim (and anything else) invokes plain `openscad`; point that at
+# the flatpak launcher exported by the user install.
+ln -sf ~/.local/share/flatpak/exports/bin/org.openscad.OpenSCAD ~/.local/bin/openscad
+
 # --- Argos Translate (offline neural machine translation) ---
 # Debian's system Python is externally managed (PEP 668), so the package
 # lives in a dedicated venv
