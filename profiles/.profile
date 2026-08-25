@@ -1,3 +1,4 @@
+# shellcheck shell=sh disable=SC1090,SC1091
 # ~/.profile: executed by the command interpreter for login shells.
 # This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
 # exists.
