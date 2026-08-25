@@ -18,8 +18,16 @@ tmpdir=$(mktemp -d)
 trap 'rm -rf "$tmpdir"' EXIT
 
 for path in "${staged[@]}"; do
+    # Staged symlinks: `git show :path` emits the target path as text,
+    # which would lint as garbage. Index mode 120000 means symlink.
+    case "$(git ls-files -s -- "$path")" in 120000*) continue ;; esac
+
     blob="$tmpdir/${path//\//__}"
     git show ":$path" > "$blob" 2>/dev/null || continue
+
+    # Binary blobs have nothing to lint and make the shebang sniffing
+    # below spew null-byte warnings.
+    grep -qI . "$blob" || continue
 
     case "$path" in
         *.lua)
@@ -61,7 +69,9 @@ for path in "${staged[@]}"; do
         zshrc/.zshrc|zshrc/.zshenv|zshrc-p10k/.p10k.zsh) is_zsh=1 ;;
     esac
     if [ "$is_zsh" -eq 1 ]; then
-        zsh -n "$blob" || note_fail "zsh -n: syntax error in $path"
+        if command -v zsh >/dev/null; then
+            zsh -n "$blob" || note_fail "zsh -n: syntax error in $path"
+        else skip_tool zsh "$path"; fi
         continue
     fi
 
