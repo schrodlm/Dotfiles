@@ -1,5 +1,4 @@
- local on_attach = function(_, bufnr)
-
+local on_attach = function(_, bufnr)
   local bufmap = function(keys, func)
     vim.keymap.set('n', keys, func, { buffer = bufnr })
   end
@@ -16,11 +15,10 @@
   bufmap('<leader>s', require('telescope.builtin').lsp_document_symbols)
   bufmap('<leader>S', require('telescope.builtin').lsp_dynamic_workspace_symbols)
 
-  bufmap('K', vim.lsp.buf.hover,  {buffer = bufnr})
-
+  bufmap('K', vim.lsp.buf.hover, { buffer = bufnr })
 
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-	vim.lsp.buf.format()
+    vim.lsp.buf.format()
   end, {})
 end
 
@@ -38,22 +36,21 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- defaults applied to every LSP server
 vim.lsp.config('*', {
-	on_attach = on_attach,
-	capabilities = capabilities,
+  on_attach = on_attach,
+  capabilities = capabilities,
 })
 
 require('neodev').setup()
 vim.lsp.config('lua_ls', {
-	settings = {
-		Lua = {
-			workspace = {checkThirdParty = false},
-			telemetry = {enable = false},
-		},
-	},
+  settings = {
+    Lua = {
+      workspace = { checkThirdParty = false },
+      telemetry = { enable = false },
+    },
+  },
 })
 
 -- adding lsp server package manager (mason)
 -- mason-lspconfig v2 auto-enables every server installed via mason
-require("mason").setup()
-require("mason-lspconfig").setup()
-
+require('mason').setup()
+require('mason-lspconfig').setup()

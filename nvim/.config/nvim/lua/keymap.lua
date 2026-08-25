@@ -1,4 +1,3 @@
-
 --Telescope + LSP--
 ----------------------------------------------------------------
 local builtin = require('telescope.builtin')
@@ -12,21 +11,19 @@ vim.keymap.set('n', '<leader>ft', builtin.treesitter, {})
 vim.keymap.set('n', '<leader>fd', builtin.git_files, {})
 vim.keymap.set('n', '<leader>fm', builtin.keymaps, {})
 -- visual mode
-vim.keymap.set('v', '<leader>fg', builtin.grep_string,{})
-
-
+vim.keymap.set('v', '<leader>fg', builtin.grep_string, {})
 
 --- Neogit ---
 ----------------------------------------------------------------
 local neogit = require('neogit')
-vim.keymap.set('n', '<leader>g',neogit.open, {})
-vim.keymap.set('n', '<leader>c', function() 
-									neogit.open({"commit"}) 
-									end,{})
+vim.keymap.set('n', '<leader>g', neogit.open, {})
+vim.keymap.set('n', '<leader>c', function()
+  neogit.open({ 'commit' })
+end, {})
 --- Telescope file browser
 vim.api.nvim_set_keymap(
-  "n",
-  "<leader>fb",
-  ":Telescope file_browser path=%:p:h select_buffer=true<CR>",
+  'n',
+  '<leader>fb',
+  ':Telescope file_browser path=%:p:h select_buffer=true<CR>',
   { noremap = true }
 )
