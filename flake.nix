@@ -45,6 +45,11 @@
           # Languages
           go
 
+          # Linters run by githooks/pre-commit
+          shellcheck
+          stylua
+          ruff
+
           # Launchers
           rofi
 
